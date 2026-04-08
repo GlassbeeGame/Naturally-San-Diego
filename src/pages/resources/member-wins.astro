@@ -1,47 +1,146 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHero from '../../components/PageHero.astro';
+
+const wins = [
+  {
+    type: 'win',
+    company: 'Your Brand Here',
+    badge: 'New Retail Placement',
+    badgeColor: '#00AD5A',
+    headline: 'Just landed on shelves at Whole Foods Market.',
+    excerpt: 'After two years of knocking on doors, this San Diego brand just secured their first major retail placement.',
+  },
+  {
+    type: 'win',
+    company: 'Your Brand Here',
+    badge: 'Funding',
+    badgeColor: '#00B2AD',
+    headline: 'Closed a $500K seed round.',
+    excerpt: 'Founder connected with their lead investor at a Naturally San Diego networking night six months ago.',
+  },
+  {
+    type: 'story',
+    company: 'Your Brand Here',
+    badge: 'Founder Story',
+    badgeColor: '#7E4558',
+    headline: 'From farmers market to 200 doors: how they did it.',
+    excerpt: 'Three years. One product. A lot of early mornings at the Del Mar farmers market. Here\'s the story of how this SD brand scaled from local favorite to regional staple.',
+  },
+  {
+    type: 'win',
+    company: 'Your Brand Here',
+    badge: 'Press',
+    badgeColor: '#F26447',
+    headline: 'Featured in Naturally Good Magazine.',
+    excerpt: 'A full profile on the brand\'s commitment to regenerative sourcing and what it means for the future of CPG.',
+  },
+  {
+    type: 'story',
+    company: 'Your Brand Here',
+    badge: 'Founder Story',
+    badgeColor: '#7E4558',
+    headline: 'What I wish I knew before my first Naturally Rising pitch.',
+    excerpt: 'A past finalist shares the prep, the nerves, and what they\'d do differently — so the next generation of applicants can walk in ready.',
+  },
+  {
+    type: 'win',
+    company: 'Your Brand Here',
+    badge: 'Award',
+    badgeColor: '#C3DB66',
+    headline: 'Named one of San Diego\'s top emerging food brands.',
+    excerpt: 'Recognized by the San Diego Business Journal for growth and community impact.',
+  },
+];
 ---
 
-<Layout title="Member Wins — Naturally San Diego">
+<Layout title="Blog — Naturally San Diego">
 
   <PageHero
     eyebrow="Resources"
-    title="Member Wins"
-    subtitle="Celebrating what this community is building."
+    title="Member Wins & Stories"
+    subtitle="The community's achievements, in their own words."
     bgColor="#00B2AD"
   />
 
   <section class="py-16 px-6 lg:px-10">
     <div class="max-w-7xl mx-auto">
-      <p class="text-base text-[#111]/70 leading-relaxed max-w-xl mb-10" style="font-family: 'Lato', sans-serif;">
-        Big wins, small wins, milestone wins. They all count. Member Wins is where the Naturally San Diego community shares what's happening in their world.
-      </p>
 
-      <!-- Placeholder grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div class="bg-[#f9f9f8] rounded-2xl px-6 py-8 flex flex-col justify-between min-h-[160px]">
-            <p class="text-sm text-[#111]/30 italic" style="font-family: 'Lato', sans-serif;">Member wins coming soon...</p>
+      <!-- Intro + submit CTA -->
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+        <div class="max-w-xl">
+          <p class="text-base text-[#111]/65 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+            New retail placement. Funding closed. A story worth telling. This is where the Naturally San Diego community shares what they're building — big milestones and small ones alike.
+          </p>
+        </div>
+        <a
+          href="/resources/submit"
+          class="flex-shrink-0 inline-block bg-[#F26447] hover:bg-orange-600 text-white font-bold text-sm px-6 py-3 rounded-full transition-colors"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Share Your Win or Story →
+        </a>
+      </div>
+
+      <!-- Content grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {wins.map(item => (
+          <div class={`bg-white rounded-2xl border border-gray-100 overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-200 ${item.type === 'story' ? 'sm:col-span-2 lg:col-span-1' : ''}`}>
+
+            <!-- Color top band -->
+            <div class="h-1.5 w-full" style={`background-color: ${item.badgeColor};`}></div>
+
+            <div class="px-6 pt-5 pb-6 flex flex-col flex-1">
+              <!-- Badge + company -->
+              <div class="flex items-center gap-2 mb-4">
+                <span
+                  class="text-xs font-bold px-2.5 py-1 rounded-full"
+                  style={`font-family: 'Poppins', sans-serif; background-color: ${item.badgeColor}18; color: ${item.badgeColor};`}
+                >
+                  {item.badge}
+                </span>
+                <span class="text-xs text-[#111]/35 font-medium" style="font-family: 'Lato', sans-serif;">
+                  {item.company}
+                </span>
+              </div>
+
+              <!-- Headline -->
+              <h3
+                class="font-black text-[#111] leading-snug mb-3 flex-1"
+                style="font-family: 'Poppins', sans-serif; font-size: 1.05rem; letter-spacing: -0.01em;"
+              >
+                {item.headline}
+              </h3>
+
+              <!-- Excerpt -->
+              <p class="text-sm text-[#111]/55 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+                {item.excerpt}
+              </p>
+            </div>
+
           </div>
         ))}
       </div>
 
-      <div class="border-t border-gray-100 pt-8">
-        <p class="text-base font-semibold text-[#111] mb-2" style="font-family: 'Poppins', sans-serif;">
-          Have a win to share?
-        </p>
-        <p class="text-sm text-[#111]/60 mb-4" style="font-family: 'Lato', sans-serif;">
-          We love to hear what our members are celebrating. Submit your news and we'll share it with the community.
-        </p>
+      <!-- Empty state notice -->
+      <div class="mt-10 bg-[#f9f9f8] rounded-2xl px-8 py-8 flex flex-col sm:flex-row sm:items-center gap-6">
+        <div class="flex-1">
+          <p class="font-bold text-[#111] mb-1" style="font-family: 'Poppins', sans-serif;">
+            These are placeholder cards.
+          </p>
+          <p class="text-sm text-[#111]/55 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+            Real member wins and stories will live here once submissions come in. Members can submit via the form — or Renee can post on their behalf.
+          </p>
+        </div>
         <a
           href="/resources/submit"
-          class="inline-block bg-[#F26447] hover:bg-orange-600 text-white font-bold text-sm px-6 py-3 rounded-full transition-colors"
+          class="flex-shrink-0 text-sm font-bold text-[#00AD5A] hover:text-[#006A45] transition-colors"
           style="font-family: 'Poppins', sans-serif;"
         >
-          Submit Your Win →
+          Submit News or a Story →
         </a>
       </div>
+
     </div>
   </section>
 
