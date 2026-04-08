@@ -97,7 +97,7 @@ const navItems = [
       ))}
     </nav>
 
-    <!-- CTA buttons -->
+    <!-- Desktop CTA buttons -->
     <div class="hidden md:flex items-center gap-2">
       <a
         href="/community/membership"
@@ -134,6 +134,8 @@ const navItems = [
       id="mobile-menu-btn"
       class="md:hidden p-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
       aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-overlay"
     >
       <svg id="icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -144,62 +146,212 @@ const navItems = [
     </button>
 
   </div>
+</header>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 pb-8">
-    {navItems.map(item => (
-      <div class="pt-5">
-        <div class="flex items-center gap-2 mb-2">
-          <div class="h-0.5 w-4 rounded-full" style={`background-color: ${item.color};`}></div>
-          <p
-            class="text-xs font-bold uppercase tracking-widest text-gray-400"
-            style="font-family: 'Poppins', sans-serif;"
-          >
-            {item.label}
-          </p>
-        </div>
-        <div class="flex flex-col gap-0.5 pl-6">
-          {item.children.map(child => (
-            <a
-              href={child.href}
-              class="text-sm font-medium text-gray-600 py-1.5 hover:text-gray-900 transition-colors"
-              style="font-family: 'Poppins', sans-serif;"
-            >
-              {child.label}
-            </a>
-          ))}
-        </div>
-      </div>
-    ))}
-    <div class="flex flex-col gap-3 mt-7 pt-6 border-t border-gray-100">
+<!-- ─── Mobile full-screen overlay ────────────────────────────── -->
+<div
+  id="mobile-overlay"
+  class="fixed inset-0 bg-white flex flex-col md:hidden"
+  style="z-index: 49; display: none !important; opacity: 0; transform: translateY(-6px); transition: opacity 0.22s ease, transform 0.22s ease;"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation menu"
+>
+
+  <!-- Overlay header (mirrors the sticky nav height) -->
+  <div class="flex items-center justify-between px-6 h-16 border-b border-gray-100 flex-shrink-0">
+    <a href="/" class="flex items-center gap-2.5" tabindex="-1" aria-hidden="true">
+      <img src="/NN_Icon.png" alt="" class="h-9 w-9 rounded-full" />
+      <span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.9rem; line-height: 1.1; letter-spacing: -0.01em; color: #006A45;">
+        Naturally<br/><span style="color: #00AD5A; font-weight: 600;">San Diego</span>
+      </span>
+    </a>
+    <button
+      id="mobile-overlay-close"
+      class="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+      aria-label="Close menu"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Scrollable body -->
+  <div class="flex-1 overflow-y-auto overscroll-contain">
+
+    <!-- ── Quick-access strip ── -->
+    <div class="px-5 pt-5 pb-4 grid grid-cols-2 gap-3">
       <a
-        href="/community/membership"
-        class="text-sm font-bold text-center py-3.5 rounded-full bg-[#F26447] text-white"
+        href="/programs/event-calendar"
+        class="flex items-center justify-center gap-2 bg-[#006A45] text-white font-bold text-sm px-4 py-3.5 rounded-2xl"
         style="font-family: 'Poppins', sans-serif;"
       >
-        Be a Member
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Events
       </a>
       <a
         href="/member-portal"
-        class="text-sm font-bold text-center py-3.5 rounded-full border border-gray-200 text-gray-700"
+        class="flex items-center justify-center gap-2 bg-[#F26447] text-white font-bold text-sm px-4 py-3.5 rounded-2xl"
         style="font-family: 'Poppins', sans-serif;"
       >
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
         Member Portal
       </a>
     </div>
+
+    <!-- ── Accordion nav ── -->
+    <nav class="px-5 pb-2" aria-label="Mobile navigation">
+      {navItems.map((item, i) => (
+        <div class={`border-t ${i === navItems.length - 1 ? 'border-b' : ''} border-gray-100`}>
+          <button
+            class="mobile-acc-btn w-full flex items-center justify-between py-4 text-left"
+            aria-expanded="false"
+          >
+            <div class="flex items-center gap-3">
+              <div class="w-1 h-5 rounded-full flex-shrink-0" style={`background-color: ${item.color};`}></div>
+              <span
+                class="font-bold text-[#111] text-base"
+                style="font-family: 'Poppins', sans-serif;"
+              >
+                {item.label}
+              </span>
+            </div>
+            <svg
+              class="mobile-chevron w-4 h-4 text-gray-400 flex-shrink-0 transition-transform duration-200"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            class="mobile-acc-panel overflow-hidden"
+            style="max-height: 0; transition: max-height 0.25s ease;"
+          >
+            <div class="pb-3 pl-4 flex flex-col">
+              {item.children.map(child => (
+                <a
+                  href={child.href}
+                  class="py-2.5 text-sm font-medium text-gray-500 hover:text-[#111] transition-colors border-l-2 border-gray-100 pl-4 hover:border-gray-300"
+                  style="font-family: 'Poppins', sans-serif;"
+                >
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </nav>
+
+    <!-- ── Bottom CTA strip ── -->
+    <div class="px-5 pt-5 pb-8 flex flex-col gap-3">
+      <a
+        href="/community/membership"
+        class="text-center font-bold text-sm py-3.5 rounded-full bg-[#00AD5A] text-white"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Become a Member
+      </a>
+      <a
+        href="/community/sponsorship"
+        class="text-center font-bold text-sm py-3.5 rounded-full border border-gray-200 text-gray-700"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Become a Sponsor
+      </a>
+    </div>
+
   </div>
-</header>
+</div>
 
 <script>
+  // ── Desktop dropdown hover ─────────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.nav-group').forEach(group => {
+    const dropdown = group.querySelector<HTMLElement>('.nav-dropdown');
+    if (!dropdown) return;
+    let timer: ReturnType<typeof setTimeout>;
+    group.addEventListener('mouseenter', () => {
+      clearTimeout(timer);
+      dropdown.style.display = 'block';
+      requestAnimationFrame(() => { dropdown.style.opacity = '1'; dropdown.style.transform = 'translateY(0)'; });
+    });
+    group.addEventListener('mouseleave', () => {
+      timer = setTimeout(() => { dropdown.style.opacity = '0'; dropdown.style.transform = 'translateY(-4px)'; setTimeout(() => { dropdown.style.display = 'none'; }, 150); }, 80);
+    });
+    dropdown.style.cssText += '; display:none; opacity:0; transform:translateY(-4px); transition: opacity 0.15s ease, transform 0.15s ease;';
+  });
+
+  // ── Mobile overlay open/close ──────────────────────────────────
   const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('mobile-overlay') as HTMLElement;
+  const closeBtn = document.getElementById('mobile-overlay-close');
   const iconOpen = document.getElementById('icon-open');
   const iconClose = document.getElementById('icon-close');
 
+  const openMenu = () => {
+    overlay.style.removeProperty('display');
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    btn?.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        overlay.style.opacity = '1';
+        overlay.style.transform = 'translateY(0)';
+      });
+    });
+    iconOpen?.classList.add('hidden');
+    iconClose?.classList.remove('hidden');
+  };
+
+  const closeMenu = () => {
+    overlay.style.opacity = '0';
+    overlay.style.transform = 'translateY(-6px)';
+    document.body.style.overflow = '';
+    btn?.setAttribute('aria-expanded', 'false');
+    setTimeout(() => { overlay.style.display = 'none'; }, 220);
+    iconOpen?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
+  };
+
   btn?.addEventListener('click', () => {
-    const isOpen = !menu?.classList.contains('hidden');
-    menu?.classList.toggle('hidden', isOpen);
-    iconOpen?.classList.toggle('hidden', !isOpen);
-    iconClose?.classList.toggle('hidden', isOpen);
+    const isOpen = overlay.style.display === 'flex';
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  closeBtn?.addEventListener('click', closeMenu);
+
+  // Close on nav link click
+  overlay.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  // ── Accordion ─────────────────────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.mobile-acc-btn').forEach(btn => {
+    const panel = btn.nextElementSibling as HTMLElement;
+    const chevron = btn.querySelector<HTMLElement>('.mobile-chevron');
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      // Close all others
+      document.querySelectorAll<HTMLElement>('.mobile-acc-btn').forEach(other => {
+        if (other === btn) return;
+        other.setAttribute('aria-expanded', 'false');
+        const otherPanel = other.nextElementSibling as HTMLElement;
+        const otherChevron = other.querySelector<HTMLElement>('.mobile-chevron');
+        otherPanel.style.maxHeight = '0';
+        if (otherChevron) otherChevron.style.transform = '';
+      });
+
+      // Toggle this one
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      panel.style.maxHeight = isOpen ? '0' : panel.scrollHeight + 'px';
+      if (chevron) chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+    });
   });
 </script>
