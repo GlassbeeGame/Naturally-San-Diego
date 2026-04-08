@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Astro generated
+.astro/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# Editor
+.obsidian/
+
+# Brainstorm/superpowers sessions
+.superpowers/
+
+# Logs
+*.log
