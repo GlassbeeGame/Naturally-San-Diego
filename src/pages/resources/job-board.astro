@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+---
+
+<Layout title="Job Board — Naturally San Diego">
+
+  <PageHero
+    eyebrow="Resources"
+    title="Natural products jobs in San Diego. And beyond."
+    bgColor="#00B2AD"
+  />
+
+  <section class="py-16 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+
+      <div>
+        <p class="text-lg text-[#111]/80 leading-relaxed mb-6" style="font-family: 'Lato', sans-serif;">
+          Members and sponsors get access to the national Naturally Network Job Board, powered by ForceBrands, the largest CPG-specialized job board around.
+        </p>
+        <ul class="space-y-3 mb-8">
+          {[
+            'Post open positions for free',
+            'Cross-post to ForceBrands at a 20% member discount',
+            'Sync your ATS so jobs populate automatically',
+            'Access a network of 5,000+ natural products professionals',
+          ].map(item => (
+            <li class="flex gap-3 items-start text-sm text-[#111]/70" style="font-family: 'Lato', sans-serif;">
+              <span class="text-[#00AD5A] font-bold flex-shrink-0 mt-0.5">✓</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="https://jobs.naturallynetwork.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-[#F26447] hover:bg-orange-600 text-white font-bold text-sm px-7 py-3.5 rounded-full transition-colors"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            Visit the Job Board →
+          </a>
+          <a
+            href="https://naturally-network-job-board-request.webflow.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block border border-gray-200 hover:border-gray-400 text-gray-700 font-bold text-sm px-7 py-3.5 rounded-full transition-colors"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            Request an Account
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-[#00B2AD]/10 rounded-2xl px-8 py-10">
+        <p
+          class="text-xs font-bold uppercase tracking-widest text-[#00B2AD] mb-4"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Member Benefit
+        </p>
+        <p
+          class="text-2xl font-black text-[#006A45] mb-3"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Free job postings. A network of 5,000+.
+        </p>
+        <p class="text-sm text-[#111]/60 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+          The Naturally Network Job Board, powered by ForceBrands, is included with your NSD membership. Not yet a member? Join for $99/year.
+        </p>
+        <a
+          href="/community/membership"
+          class="inline-block mt-6 text-sm font-bold text-[#00AD5A] hover:text-[#006A45] transition-colors"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Become a Member →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

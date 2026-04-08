@@ -1,0 +1,273 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const benefits = [
+  {
+    title: 'Free or discounted entry to every NSD event',
+    body: 'Naturally Rising, Networking Nights, Morning Mingles, Office Hours, Founder Series, Fall Fling. All included.',
+  },
+  {
+    title: 'The Naturally Network, nationwide',
+    body: 'Your SD membership travels. Connect with chapters in New York, NorCal, Colorado, and beyond.',
+  },
+  {
+    title: 'Member & Sponsor Directory',
+    body: 'Search the whole community by industry, role, and company type. Your next collaborator is in here.',
+  },
+  {
+    title: 'Members-only Slack',
+    body: 'Where the community actually lives between events. Real questions, real answers. Usually within the hour.',
+  },
+  {
+    title: 'The room, and everyone in it',
+    body: 'Investors, co-manufacturers, retailers, and founders who\'ve already been where you\'re headed.',
+  },
+  {
+    title: 'Job Board via ForceBrands',
+    body: 'Post jobs for free. Cross-post to 5,000+ natural products professionals at a 20% member discount.',
+  },
+];
+
+const individualTiers = [
+  {
+    name: 'Brand',
+    description: 'Companies that make a physical CPG product sold DTC or in retail.',
+    price: '$99',
+    color: '#00AD5A',
+    darkText: false,
+    href: 'https://app.glueup.com/org/naturallysandiego/memberships/',
+    cta: 'Apply →',
+  },
+  {
+    name: 'Service Provider',
+    description: 'Companies that provide a service to natural products brands: marketing, legal, packaging, brokerage, and more.',
+    price: '$299',
+    color: '#00B2AD',
+    darkText: false,
+    href: 'https://app.glueup.com/org/naturallysandiego/memberships/',
+    cta: 'Apply →',
+  },
+  {
+    name: 'Non-Profit Partner Org.',
+    description: 'For local San Diego nonprofits: food banks, farms, entrepreneur support organizations, and similar.',
+    price: '$99',
+    color: '#006A45',
+    darkText: false,
+    href: 'https://app.glueup.com/org/naturallysandiego/memberships/',
+    cta: 'Apply →',
+  },
+  {
+    name: 'Job Seeker',
+    description: 'Valid for 1 year. You must be actively looking for a job within the SD natural products community.',
+    price: '$99',
+    color: '#C3DB66',
+    darkText: true,
+    href: 'https://app.glueup.com/org/naturallysandiego/memberships/',
+    cta: 'Apply →',
+  },
+  {
+    name: 'College Student',
+    description: 'For current college students interested in the natural products and CPG industry.',
+    price: '$49',
+    color: '#7E4558',
+    darkText: false,
+    href: 'https://app.glueup.com/org/naturallysandiego/memberships/',
+    cta: 'Apply →',
+  },
+  {
+    name: 'Sponsorship Packages',
+    description: 'For brands and businesses looking to amplify their presence across the entire NSD community. Packages from $1,000/year.',
+    price: 'From $1,000',
+    color: '#111111',
+    darkText: false,
+    href: '/community/sponsorship',
+    cta: 'View Packages →',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Who is membership for?',
+    answer: 'Natural products brands, CPG founders, and the service providers who support them: investors, agencies, lawyers, consultants, brokers, and more. We also have options for nonprofits, job seekers, and college students.',
+  },
+  {
+    question: 'What\'s the difference between Brand and Service Provider membership?',
+    answer: 'Brand membership ($99/year) is for natural products companies and their founders. Service Provider membership ($299/year) is for businesses that support the industry: agencies, law firms, banks, consultants, and similar.',
+  },
+  {
+    question: 'Do I need to be based in San Diego?',
+    answer: 'San Diego-area members get the most out of local events, but membership includes access to the full Naturally Network, with chapters across the US. Remote-friendly members welcome.',
+  },
+  {
+    question: 'How do I access the Slack community?',
+    answer: 'After joining, you\'ll receive an invite to the members-only Slack channel. Contact info@naturallysandiego.org if you have trouble.',
+  },
+  {
+    question: 'Is the Job Seeker membership renewable?',
+    answer: 'The Job Seeker membership is valid for 1 year and is intended for active job seekers within the SD natural products community.',
+  },
+];
+---
+
+<Layout title="Membership — Naturally San Diego">
+
+  <PageHero
+    eyebrow="Community"
+    title="Your people are already here."
+    subtitle="For brands, service providers, nonprofits, job seekers, and students. Starting at $49/year."
+    bgColor="#00AD5A"
+  />
+
+  <!-- Value prop + Benefits -->
+  <section class="py-16 lg:py-20 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <!-- Left: Photo -->
+      <div class="relative">
+        <div class="rounded-2xl overflow-hidden" style="aspect-ratio: 4/3;">
+          <img
+            src="/events/PitchSlam2023-133-resize-1280-wide-1030x686.jpg"
+            alt="Naturally San Diego community at Naturally Rising pitch competition"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2">
+          <p class="text-xs font-bold text-[#006A45]" style="font-family: 'Poppins', sans-serif;">Naturally Rising · 350-person audience</p>
+        </div>
+      </div>
+
+      <!-- Right: Pitch + Benefits -->
+      <div>
+        <p
+          class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-4"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Why it's worth it
+        </p>
+        <p
+          class="text-xl lg:text-2xl font-black text-[#111] leading-snug mb-5"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Membership is a Tuesday morning coffee with someone who just solved your exact problem.
+        </p>
+        <p class="text-base text-[#111]/65 leading-relaxed mb-8" style="font-family: 'Lato', sans-serif;">
+          It's a Slack message at 9pm that actually gets answered. It's walking into Naturally Rising and realizing the whole room is rooting for you.
+        </p>
+        <div class="space-y-4">
+          {benefits.map(b => (
+            <div class="flex gap-4 items-start">
+              <svg class="w-5 h-5 text-[#00AD5A] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <p class="font-bold text-sm text-[#111] mb-0.5" style="font-family: 'Poppins', sans-serif;">
+                  {b.title}
+                </p>
+                <p class="text-sm text-[#111]/60 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+                  {b.body}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Membership Tiers -->
+  <section class="bg-[#f9f9f8] py-16 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <p
+        class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-2"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Membership Tiers
+      </p>
+      <h2
+        class="text-3xl font-black text-[#111] mb-3"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        There's a seat for everyone.
+      </h2>
+      <p class="text-base text-[#111]/60 mb-10 max-w-xl" style="font-family: 'Lato', sans-serif;">
+        Brands, service providers, nonprofits, job seekers, students. Pick the tier that fits.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {individualTiers.map(tier => (
+          <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col group hover:shadow-md transition-shadow duration-200">
+            <!-- Colored header band -->
+            <div
+              class="px-7 pt-7 pb-5"
+              style={`background-color: ${tier.color};`}
+            >
+              <p
+                class="text-xs font-bold uppercase tracking-widest mb-1 opacity-80"
+                style="font-family: 'Poppins', sans-serif; color: rgba(255,255,255,0.85);"
+              >
+                Individual
+              </p>
+              <h3
+                class="text-xl font-black leading-tight"
+                style="font-family: 'Poppins', sans-serif; color: #fff;"
+              >
+                {tier.name}
+              </h3>
+            </div>
+            <!-- Card body -->
+            <div class="px-7 py-6 flex flex-col flex-1">
+              <p class="text-sm text-[#111]/60 leading-relaxed mb-6 flex-1" style="font-family: 'Lato', sans-serif;">
+                {tier.description}
+              </p>
+              <div class="flex items-baseline gap-1 mb-6">
+                <span
+                  class="text-4xl font-black"
+                  style={`font-family: 'Poppins', sans-serif; color: ${tier.color};`}
+                >
+                  {tier.price}
+                </span>
+                <span class="text-sm text-[#111]/40" style="font-family: 'Lato', sans-serif;">/ year</span>
+              </div>
+              <a
+                href={tier.href}
+                target={tier.href.startsWith('http') ? '_blank' : '_self'}
+                rel={tier.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class="block text-center bg-[#F26447] hover:bg-orange-600 text-white font-bold text-sm px-6 py-3 rounded-full transition-colors"
+                style="font-family: 'Poppins', sans-serif;"
+              >
+                {tier.cta}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="bg-[#f9f9f8] py-16 px-6 lg:px-10">
+    <div class="max-w-3xl mx-auto">
+      <h2
+        class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-8"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Frequently Asked Questions
+      </h2>
+      <FaqAccordion items={faqs} />
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to do more?"
+    body="Sponsorship puts your brand in front of the whole community. Every event, every email, across the entire ecosystem."
+    cta1Label="Explore Sponsorship"
+    cta1Href="/community/sponsorship"
+  />
+
+</Layout>

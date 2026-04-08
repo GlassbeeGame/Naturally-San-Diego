@@ -1,0 +1,150 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTASection from '../../components/CTASection.astro';
+---
+
+<Layout title="Naturally Rising — Naturally San Diego">
+
+  <PageHero
+    eyebrow="Programs"
+    title="Naturally Rising"
+    subtitle="The stage is yours. Show us what you've built."
+    bgColor="#00B2AD"
+  />
+
+  <!-- Photo gallery -->
+  <section class="py-10 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 gap-4">
+        <img src="/events/PitchSlam2023-133-scaled-e1685123929854.jpg" alt="Pitch Slam 2023 — audience" class="rounded-2xl object-cover w-full h-56" loading="lazy" />
+        <img src="/events/PitchSlam2023-175-scaled-e1685123998781-495x400.jpg" alt="Pitch Slam 2023 — six finalists on stage" class="rounded-2xl object-cover w-full h-56" loading="lazy" />
+        <img src="/events/PitchSlam2023-188-scaled-e1685124116677-495x400.jpg" alt="Pitch Slam 2023 — Root and Splendor wins" class="rounded-2xl object-cover w-full h-56" loading="lazy" />
+        <img src="/events/PitchSlam2023-106-scaled-e1685124171424-495x400.jpg" alt="Pitch Slam 2023 — Ray Latif MCing" class="rounded-2xl object-cover w-full h-56" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="py-16 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14">
+
+      <!-- Description -->
+      <div>
+        <p class="text-lg text-[#111]/80 leading-relaxed mb-6" style="font-family: 'Lato', sans-serif;">
+          Every spring, Naturally San Diego opens the floor to San Diego's most promising natural products brands. Founders pitch live, on-stage, to a panel of expert judges and an audience of 350 — competing for a prize package worth $100,000+ in products and services.
+        </p>
+        <p class="text-lg text-[#111]/80 leading-relaxed mb-8" style="font-family: 'Lato', sans-serif;">
+          This is Naturally Rising. It started in 2021 as the Pitch Slam. The name changed. The stakes didn't.
+        </p>
+        <!-- 🔴 NEEDS CLIENT INPUT: application link -->
+        <a
+          href="#"
+          class="inline-block bg-[#F26447] hover:bg-orange-600 text-white font-bold text-sm px-7 py-3.5 rounded-full transition-colors"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Apply for Naturally Rising →
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 gap-4">
+        {[
+          { number: '5', label: 'Years Running' },
+          { number: '350', label: 'Person Audience' },
+          { number: '$100K+', label: 'Prize Package' },
+          { number: '6', label: 'Finalists Each Year' },
+        ].map(stat => (
+          <div class="bg-[#f9f9f8] rounded-2xl px-6 py-7 flex flex-col justify-between">
+            <p
+              class="text-4xl font-black text-[#C3DB66]"
+              style="font-family: 'Poppins', sans-serif;"
+            >
+              {stat.number}
+            </p>
+            <p
+              class="text-sm font-semibold text-[#111]/70 mt-2"
+              style="font-family: 'Poppins', sans-serif;"
+            >
+              {stat.label}
+            </p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="bg-[#f9f9f8] py-16 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <h2
+        class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-10"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Competition History
+      </h2>
+      <div class="space-y-8">
+        {[
+          {
+            year: '2021',
+            title: '1st Annual Pitch Slam',
+            detail: 'Naturally San Diego launched its first pitch competition, bringing together San Diego\'s top emerging natural products brands.',
+          },
+          {
+            year: '2022',
+            title: '2nd Annual — BRICK, Liberty Station',
+            detail: 'Held at BRICK in Liberty Station. Winner: Gear Hugger, who went on to win the national Naturally Network competition at New Hope Expo East.',
+          },
+          {
+            year: '2023',
+            title: '3rd Annual — Root and Splendor wins',
+            detail: 'MC Ray Latif of BevNET Taste Radio. Winner: Kristin Fracassi of Root and Splendor. Finalists: I Amaranth, RationAle, Brixy, Cien Chiles, Wynn\'s Kitchen, Root and Splendor.',
+          },
+          {
+            year: '2024',
+            title: '4th Annual — 35+ applicants',
+            detail: '35+ brand applicants. 6 finalists. 350-person audience. $100,000+ prize package.',
+          },
+          {
+            year: '2025',
+            title: 'Naturally Rising — New name, same stakes',
+            detail: 'Renamed from "Pitch Slam" to "Naturally Rising," announced February 2025. Applications open soon.',
+          },
+        ].map(entry => (
+          <div class="flex gap-8 items-start">
+            <div class="flex-shrink-0 w-16">
+              <span
+                class="text-2xl font-black text-[#C3DB66]"
+                style="font-family: 'Poppins', sans-serif;"
+              >
+                {entry.year}
+              </span>
+            </div>
+            <div class="border-l-2 border-[#C3DB66] pl-6 pb-2">
+              <h3
+                class="font-bold text-[#111] mb-1"
+                style="font-family: 'Poppins', sans-serif;"
+              >
+                {entry.title}
+              </h3>
+              <p class="text-sm text-[#111]/60 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+                {entry.detail}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to take the stage?"
+    body="Naturally Rising is the biggest night in San Diego's natural products calendar. Applications open every spring."
+    cta1Label="Apply for Naturally Rising →"
+    cta1Href="#"
+    cta2Label="See All Events"
+    cta2Href="/programs/event-calendar"
+  />
+
+</Layout>

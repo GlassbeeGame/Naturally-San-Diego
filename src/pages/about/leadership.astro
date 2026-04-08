@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import BoardGrid from '../../components/BoardGrid.astro';
+import CTASection from '../../components/CTASection.astro';
+---
+
+<Layout title="Our Leadership — Naturally San Diego">
+
+  <PageHero
+    eyebrow="About"
+    title="Our Leadership"
+    subtitle="The people building San Diego's natural products community."
+  />
+
+  <section class="py-16 lg:py-20 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <BoardGrid />
+    </div>
+  </section>
+
+  <CTASection
+    headline="Want to get involved?"
+    body="Naturally San Diego is driven by the community. Join as a member or reach out to learn about board participation."
+    cta1Label="Become a Member"
+    cta1Href="https://app.glueup.com/org/naturallysandiego/memberships/"
+    cta1External={true}
+    cta2Label="Contact Us →"
+    cta2Href="/about/contact"
+  />
+
+</Layout>

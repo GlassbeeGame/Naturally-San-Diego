@@ -1,0 +1,128 @@
+---
+const staff = [
+  {
+    name: 'Renee Solares',
+    role: 'Executive Director',
+    company: 'Naturally San Diego',
+    photo: '/team/Renee-Solares-180x180.jpg',
+    bio: "Leading Naturally San Diego's mission to build the most connected natural products community in Southern California.",
+  },
+];
+
+const board = [
+  { name: 'Ari Raz', role: 'President', company: 'The Coconut Cult', title: 'CEO', photo: '/team/NaturallySD@MarcyBrowePhoto-50-180x180.jpg' },
+  { name: 'Jessica Windell', role: 'Vice President', company: 'Maven Consulting', title: 'Chief Maven', photo: '/team/Jessica-Windell-180x180.jpg' },
+  { name: 'Jack Peterson', role: 'Treasurer', company: 'Bank of America', title: 'SVP Senior Relationship Manager', photo: '/team/jack-headshot-180x180.jpg' },
+  { name: 'Rebecca Evangelou', role: 'Secretary', company: 'Chuao Chocolatier', title: 'CEO', photo: '/team/Rebecca-Evangelou-Board-Member-at-Naturally-San-Diego.-Chuao-Chocolatier-CEO.-180x180.jpg' },
+  { name: 'Jason Femrite', role: 'Officer', company: 'Procopio', title: 'Partner', photo: '/team/Jason-Femrite-Officer-at-Naturally-San-Diego.-180x180.jpg' },
+  { name: 'Adam Hertel', role: 'Board Member', company: "Rudi's Rocky Mountain Bakery", title: 'Chief Sales Officer', photo: '/team/NaturallySD@MarcyBrowePhoto-62-180x180.jpg' },
+  { name: 'Gabriel Perez-Krieb', role: 'Board Member', company: 'Chosen Foods', title: 'CEO', photo: '/team/gabriel-headshot-180x180.jpg' },
+  { name: 'Jason Potolicchio', role: 'Board Member', company: 'RSM US', title: 'Senior Tax Manager', photo: '/team/jason-p-headshot-180x180.jpg' },
+  { name: 'JR Simich', role: 'Board Member', company: 'Ampersand Growth Partners', title: 'Consultant', photo: '/team/jr-simich-180x180.jpg' },
+  { name: 'Julie Sweet', role: 'Board Member', company: 'Purely Righteous Brands', title: 'Partner / Chief Strategy & Creative Officer', photo: '/team/Julie-Sweet-Membership-Committee-Chair-Board-Member-at-Naturally-San-Diego.-Purely-Righteous-BrandsPartner-Chief-Strategy-Creative-Officer-180x180.jpg' },
+  { name: 'Julie Tally', role: 'Board Member', company: 'Verity Case', title: 'VP of Operations', photo: '/team/Julie-Tally-Membership-Committee-Chair-Board-Member-at-Naturally-San-Diego.-Verity-Case-VP-of-Operations-180x180.jpg' },
+  { name: 'Justin Jackson', role: 'Board Member', company: "Jimbo's Naturally", title: 'COO', photo: '/team/41-180x180.png' },
+  { name: 'Matt Clifford', role: 'Board Member', company: 'Ampersand Growth Partners', title: 'Consultant', photo: '/team/NaturallySD@MarcyBrowePhoto-100-180x180.jpg' },
+  { name: "Michael O'Connor", role: 'Board Member', company: 'Next Level Solutions', title: 'President', photo: '/team/Michael-Oconnor-180x180.png' },
+  { name: 'Leigh Keith', role: 'Board Member', company: 'Perfect Snacks', title: 'Co-Founder and Chief of Brand', photo: '/team/40-180x180.png' },
+  { name: 'Sam Zaiser', role: 'Board Member', company: 'Marsh and McLennan', title: 'Food & Bev Practice Client Executive', photo: '/team/Sam-Zaiser-Board-Member-at-Naturally-San-Diego.-180x180.jpg' },
+  { name: 'Sara Brooks', role: 'Board Member', company: 'Goldilocks', title: 'Founder', photo: '/team/Sara-Brooks-180x180.jpg' },
+  { name: 'Sean Lake', role: 'Board Member', company: 'BUBS Naturals', title: 'Co-Founder and CEO', photo: '/team/Sean-Lake-2-180x180.png' },
+  { name: 'Sid Mikhail', role: 'Board Member', company: 'Luminize Marketing', title: 'CEO and Founder', photo: '/team/38-180x180.png' },
+  { name: 'Thad Benshoof', role: 'Board Member', company: 'Homegrown Meats', title: 'Co-Founder', photo: '/team/NaturallySD@MarcyBrowePhoto-87-180x180.jpg' },
+];
+
+function initials(name: string) {
+  return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+}
+---
+
+<!-- ── Staff ─────────────────────────────────────────────────── -->
+<div class="mb-20">
+  <div class="mb-10">
+    <p class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-3" style="font-family: 'Poppins', sans-serif;">Our Team</p>
+    <h2 class="text-3xl font-black text-[#111]" style="font-family: 'Poppins', sans-serif; letter-spacing: -0.02em;">The People Behind the Mission</h2>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl">
+    {staff.map(person => (
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col items-center text-center gap-3">
+        <!-- Circle photo -->
+        <div class="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-[#C3DB66]/30">
+          <img
+            src={person.photo}
+            alt={person.name}
+            class="w-full h-full object-cover object-top"
+            loading="lazy"
+          />
+        </div>
+        <!-- Info -->
+        <div class="flex flex-col items-center gap-1.5">
+          <p class="font-black text-[#111] text-base leading-snug" style="font-family: 'Poppins', sans-serif;">
+            {person.name}
+          </p>
+          <span
+            class="inline-block bg-[#C3DB66] text-[#006A45] text-xs font-bold px-3 py-1 rounded-full"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            {person.role}
+          </span>
+          <p class="text-xs text-[#111]/55 leading-relaxed mt-1" style="font-family: 'Lato', sans-serif;">
+            {person.bio}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<!-- ── Board of Directors ─────────────────────────────────────── -->
+<div>
+  <div class="mb-10">
+    <p class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-3" style="font-family: 'Poppins', sans-serif;">Governance</p>
+    <h2 class="text-3xl font-black text-[#111]" style="font-family: 'Poppins', sans-serif; letter-spacing: -0.02em;">Board of Directors</h2>
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+    {board.map(person => (
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex flex-col items-center text-center gap-2.5">
+        <!-- Circle photo -->
+        <div class="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-[#C3DB66]/30 relative">
+          <img
+            src={person.photo}
+            alt={person.name}
+            class="w-full h-full object-cover object-top"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <!-- Fallback initials -->
+          <div
+            class="absolute inset-0 items-center justify-center bg-[#006A45] text-white font-black text-xl rounded-full"
+            style="display: none; font-family: 'Poppins', sans-serif;"
+            aria-hidden="true"
+          >
+            {initials(person.name)}
+          </div>
+        </div>
+        <!-- Info -->
+        <div class="flex flex-col items-center gap-1">
+          <p class="font-bold text-[#111] text-sm leading-snug" style="font-family: 'Poppins', sans-serif;">
+            {person.name}
+          </p>
+          <span
+            class="inline-block bg-[#C3DB66] text-[#006A45] text-xs font-bold px-2 py-0.5 rounded-full"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            {person.role}
+          </span>
+          <p class="text-xs text-[#111]/50 leading-tight mt-0.5" style="font-family: 'Lato', sans-serif;">
+            {person.title}
+          </p>
+          <p class="text-xs font-semibold text-[#006A45]/70 leading-tight" style="font-family: 'Lato', sans-serif;">
+            {person.company}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

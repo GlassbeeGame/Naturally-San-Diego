@@ -1,0 +1,50 @@
+---
+interface Props {
+  quote: string;
+  attribution: string;
+  accentPhrase?: string;
+}
+
+const { quote, attribution, accentPhrase } = Astro.props;
+---
+
+<section class="relative bg-[#0d1a10] py-24 px-6 lg:px-10 overflow-hidden">
+  <!-- Subtle green radial glow -->
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 30% 50%, rgba(0,173,90,0.12), transparent 60%);"></div>
+  <!-- Large decorative quote mark -->
+  <div
+    class="absolute top-8 left-8 lg:left-16 select-none pointer-events-none"
+    aria-hidden="true"
+    style="font-family: 'Poppins', sans-serif; font-size: clamp(8rem, 20vw, 16rem); font-weight: 900; line-height: 1; color: rgba(195,219,102,0.07); user-select: none;"
+  >
+    "
+  </div>
+
+  <div class="relative z-10 max-w-5xl mx-auto">
+    <p
+      class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight"
+      style="font-family: 'Poppins', sans-serif; letter-spacing: -0.03em;"
+    >
+      <span class="text-white/30 text-5xl lg:text-6xl" style="font-family: serif; line-height: 0; vertical-align: -0.2em; margin-right: 4px;">"</span>
+      {accentPhrase
+        ? (
+          <Fragment set:html={quote.replace(
+            accentPhrase,
+            `<span style="color: #C3DB66;">${accentPhrase}</span>`
+          )} />
+        )
+        : quote
+      }
+      <span class="text-white/30 text-5xl lg:text-6xl" style="font-family: serif; line-height: 0; vertical-align: -0.2em; margin-left: 2px;">"</span>
+    </p>
+    <div class="mt-8 flex items-center gap-4">
+      <div class="h-px w-8 bg-[#C3DB66]"></div>
+      <p
+        class="text-xs font-bold uppercase tracking-[0.18em] text-white/40"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        {attribution}
+      </p>
+    </div>
+  </div>
+</section>

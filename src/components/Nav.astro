@@ -1,0 +1,205 @@
+---
+const navItems = [
+  {
+    label: 'About',
+    href: '/about',
+    color: '#006A45',
+    children: [
+      { label: 'Our Story', href: '/about/our-story' },
+      { label: 'Leadership', href: '/about/leadership' },
+      { label: 'Our Sponsors', href: '/about/sponsors' },
+      { label: 'Press', href: '/about/press' },
+      { label: 'Contact Us', href: '/about/contact' },
+    ],
+  },
+  {
+    label: 'Programs',
+    href: '/programs',
+    color: '#00B2AD',
+    children: [
+      { label: 'Naturally Rising', href: '/programs/naturally-rising' },
+      { label: 'Monthly Events', href: '/programs/monthly-events' },
+      { label: 'Event Calendar', href: '/programs/event-calendar' },
+      { label: 'Forums', href: '/programs/forums' },
+    ],
+  },
+  {
+    label: 'Community',
+    href: '/community',
+    color: '#00AD5A',
+    children: [
+      { label: 'Membership', href: '/community/membership' },
+      { label: 'Sponsorship', href: '/community/sponsorship' },
+    ],
+  },
+  {
+    label: 'Resources',
+    href: '/resources',
+    color: '#00B2AD',
+    children: [
+      { label: 'Job Board', href: '/resources/job-board' },
+      { label: 'CPG Academy', href: '/resources/cpg-academy' },
+      { label: 'Member Wins', href: '/resources/member-wins' },
+      { label: 'Slack Community', href: '/resources/slack' },
+      { label: 'Submit News', href: '/resources/submit' },
+    ],
+  },
+];
+---
+
+<header class="bg-white border-b border-gray-100/80 sticky top-0 z-50" style="backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <a href="/" class="flex-shrink-0 flex items-center gap-2.5">
+      <img
+        src="/NN_Icon.png"
+        alt=""
+        aria-hidden="true"
+        class="h-9 w-9 rounded-full"
+      />
+      <span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.9rem; line-height: 1.1; letter-spacing: -0.01em; color: #006A45;">
+        Naturally<br/><span style="color: #00AD5A; font-weight: 600;">San Diego</span>
+      </span>
+    </a>
+
+    <!-- Desktop nav links with animated dropdowns -->
+    <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
+      {navItems.map(item => (
+        <div class="nav-group relative">
+          <a
+            href={item.href}
+            class="text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1.5 px-3 py-5 rounded-lg hover:bg-gray-50"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            {item.label}
+            <svg class="w-3 h-3 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+          <!-- Animated dropdown with section color accent -->
+          <div class="nav-dropdown absolute top-full left-0 pt-2" style="z-index: 100;">
+            <div class="bg-white rounded-2xl py-2 min-w-[200px] border border-gray-100" style="box-shadow: 0 12px 40px rgba(0,0,0,0.10);">
+              <!-- Section color bar at top -->
+              <div class="mx-3 mb-2 h-0.5 rounded-full" style={`background-color: ${item.color};`}></div>
+              {item.children.map(child => (
+                <a
+                  href={child.href}
+                  class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors rounded-lg mx-1"
+                  style="font-family: 'Poppins', sans-serif;"
+                >
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </nav>
+
+    <!-- CTA buttons -->
+    <div class="hidden md:flex items-center gap-2">
+      <a
+        href="/community/membership"
+        class="text-sm font-bold px-4 py-2 rounded-full border border-gray-200 text-gray-700 hover:border-[#00AD5A] hover:text-[#00AD5A] transition-colors"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Be a Member
+      </a>
+      <a
+        href="/community/sponsorship"
+        class="text-sm font-bold px-4 py-2 rounded-full border border-gray-200 text-gray-700 hover:border-[#00B2AD] hover:text-[#00B2AD] transition-colors"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Be a Sponsor
+      </a>
+      <a
+        href="/programs/event-calendar"
+        class="text-sm font-bold px-4 py-2 rounded-full border border-gray-200 text-gray-700 hover:border-[#006A45] hover:text-[#006A45] transition-colors"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Events
+      </a>
+      <a
+        href="/member-portal"
+        class="text-sm font-bold px-5 py-2 rounded-full bg-[#F26447] text-white hover:bg-orange-500 transition-colors"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Member Portal
+      </a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+      aria-label="Open menu"
+    >
+      <svg id="icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 pb-8">
+    {navItems.map(item => (
+      <div class="pt-5">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="h-0.5 w-4 rounded-full" style={`background-color: ${item.color};`}></div>
+          <p
+            class="text-xs font-bold uppercase tracking-widest text-gray-400"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            {item.label}
+          </p>
+        </div>
+        <div class="flex flex-col gap-0.5 pl-6">
+          {item.children.map(child => (
+            <a
+              href={child.href}
+              class="text-sm font-medium text-gray-600 py-1.5 hover:text-gray-900 transition-colors"
+              style="font-family: 'Poppins', sans-serif;"
+            >
+              {child.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+    <div class="flex flex-col gap-3 mt-7 pt-6 border-t border-gray-100">
+      <a
+        href="/community/membership"
+        class="text-sm font-bold text-center py-3.5 rounded-full bg-[#F26447] text-white"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Be a Member
+      </a>
+      <a
+        href="/member-portal"
+        class="text-sm font-bold text-center py-3.5 rounded-full border border-gray-200 text-gray-700"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Member Portal
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', isOpen);
+    iconOpen?.classList.toggle('hidden', !isOpen);
+    iconClose?.classList.toggle('hidden', isOpen);
+  });
+</script>

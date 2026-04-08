@@ -1,0 +1,24 @@
+---
+interface Props {
+  widgetId: string;
+  src: string;
+  title: string;
+  minHeight?: string;
+  autoWidth?: boolean;
+}
+
+const { widgetId, src, title, minHeight = '600px', autoWidth = true } = Astro.props;
+---
+
+<div style={`min-height: ${minHeight};`}>
+  <iframe
+    class="eb-widget"
+    id={widgetId}
+    name={widgetId}
+    title={title}
+    data-auto-adjust-height="true"
+    data-auto-adjust-width={autoWidth ? 'true' : 'false'}
+    style={`display:block; margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent; width:100%; min-height:${minHeight};`}
+    src={src}
+  ></iframe>
+</div>

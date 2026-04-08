@@ -1,0 +1,143 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import SponsorStrip from '../../components/SponsorStrip.astro';
+import FormspreeForm from '../../components/FormspreeForm.astro';
+
+const inquiryFields = [
+  { name: 'name', label: 'Your Name', type: 'text' as const, required: true, placeholder: 'Jane Smith' },
+  { name: 'company', label: 'Company', type: 'text' as const, required: true, placeholder: 'Your Company Name' },
+  { name: 'email', label: 'Email Address', type: 'email' as const, required: true, placeholder: 'jane@company.com' },
+  { name: 'phone', label: 'Phone (optional)', type: 'tel' as const, placeholder: '(619) 555-0100' },
+  {
+    name: 'tier',
+    label: 'Tier of Interest',
+    type: 'select' as const,
+    required: true,
+    options: ['Platinum', 'Gold', 'Silver', 'Bronze', 'Emerging Brands', 'Naturally Network Partner', 'Not sure yet'],
+  },
+  { name: 'message', label: 'Message', type: 'textarea' as const, placeholder: 'Tell us about your goals and any questions you have...' },
+];
+---
+
+<Layout title="Sponsorship — Naturally San Diego">
+
+  <PageHero
+    eyebrow="Community"
+    title="Get in the room and stay there."
+    subtitle="Sponsorship that puts your brand where San Diego's natural products decisions get made."
+    bgColor="#00AD5A"
+  />
+
+  <!-- Why Sponsor -->
+  <section class="py-16 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-14">
+        {[
+          {
+            title: 'Brand Exposure',
+            body: 'Your logo, name, and message in front of San Diego\'s natural products community. Every event, every email, across the whole ecosystem.',
+          },
+          {
+            title: 'Community Access',
+            body: 'Get in the room with the brands, founders, and professionals who are building the next generation of natural products companies.',
+          },
+          {
+            title: 'Year-Round Presence',
+            body: 'Sponsorship isn\'t a one-day thing. Your name is with us at Naturally Rising, networking nights, facility tours, and everything in between.',
+          },
+        ].map(item => (
+          <div class="bg-[#f9f9f8] rounded-2xl px-7 py-8">
+            <h3
+              class="text-lg font-black text-[#111] mb-3"
+              style="font-family: 'Poppins', sans-serif;"
+            >
+              {item.title}
+            </h3>
+            <p class="text-sm text-[#111]/60 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+              {item.body}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-lg text-[#111]/70 leading-relaxed max-w-3xl" style="font-family: 'Lato', sans-serif;">
+        Naturally San Diego sponsors aren't just cutting a check. They're in the room. They're on the stage. They're the first phone call a new founder makes when they need a co-packer, a banker, or a lawyer who actually gets CPG.
+      </p>
+    </div>
+  </section>
+
+  <!-- Current sponsors -->
+  <SponsorStrip />
+
+  <!-- Tiers -->
+  <section class="py-16 px-6 lg:px-10 bg-[#f9f9f8]">
+    <div class="max-w-7xl mx-auto">
+      <h2
+        class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-8"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Sponsorship Tiers
+      </h2>
+      <!-- 🔴 NEEDS CLIENT INPUT: sponsorship deck data — tier benefits, pricing -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {['Platinum', 'Gold', 'Silver', 'Bronze', 'Emerging Brands', 'Naturally Network Partners'].map((tier, i) => (
+          <div class={`bg-white rounded-2xl border border-gray-100 px-7 py-8 ${i === 0 ? 'border-[#C3DB66] border-2' : ''}`}>
+            <p
+              class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-2"
+              style="font-family: 'Poppins', sans-serif;"
+            >
+              {tier}
+            </p>
+            <p class="text-sm text-[#111]/50 italic" style="font-family: 'Lato', sans-serif;">
+              Benefits and pricing in the sponsorship deck. Contact Renee for details.
+            </p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <!-- 🔴 NEEDS CLIENT INPUT: sponsorship deck PDF URL -->
+        <a
+          href="#"
+          class="inline-block bg-[#F26447] hover:bg-orange-600 text-white font-bold text-sm px-7 py-3.5 rounded-full transition-colors"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Download Sponsorship Deck
+        </a>
+        <a
+          href="mailto:renee@naturallysandiego.org"
+          class="inline-block border border-gray-200 hover:border-gray-400 text-gray-700 font-bold text-sm px-7 py-3.5 rounded-full transition-colors"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Email Renee Directly
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inquiry Form -->
+  <section class="py-16 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14">
+      <div>
+        <h2
+          class="text-2xl font-black text-[#111] mb-4"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Let's talk.
+        </h2>
+        <p class="text-base text-[#111]/60 leading-relaxed mb-6" style="font-family: 'Lato', sans-serif;">
+          Fill out the form and Renee will be in touch within 1–2 business days. Or reach out directly at <a href="mailto:renee@naturallysandiego.org" class="text-[#00AD5A] hover:underline">renee@naturallysandiego.org</a>.
+        </p>
+      </div>
+      <div>
+        <!-- TODO: add Formspree endpoint — create account at formspree.io (Sponsor Inquiry → renee@naturallysandiego.org) -->
+        <FormspreeForm
+          action=""
+          fields={inquiryFields}
+          submitLabel="Send Inquiry"
+        />
+      </div>
+    </div>
+  </section>
+
+</Layout>

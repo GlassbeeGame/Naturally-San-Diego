@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import SponsorGrid from '../../components/SponsorGrid.astro';
+---
+
+<Layout title="Our Sponsors — Naturally San Diego">
+
+  <PageHero
+    eyebrow="About"
+    title="Our Sponsors"
+    subtitle="The brands and businesses building this community alongside us."
+    bgColor="#006A45"
+  />
+
+  <section class="py-16 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+
+      <p class="text-lg text-[#111]/70 leading-relaxed max-w-2xl mb-14" style="font-family: 'Lato', sans-serif;">
+        Naturally San Diego sponsors aren't just cutting a check. They're in the room. They're on the stage. They're the first phone call a new founder makes when they need a co-packer, a banker, or a lawyer who actually gets CPG.
+      </p>
+
+      <SponsorGrid />
+
+      <div class="mt-14 pt-10 border-t border-gray-100">
+        <p class="text-base text-[#111]/70 mb-4" style="font-family: 'Lato', sans-serif;">
+          Want to join this list?
+        </p>
+        <a
+          href="/community/sponsorship"
+          class="inline-block bg-[#F26447] hover:bg-orange-600 text-white font-bold text-sm px-7 py-3.5 rounded-full transition-colors"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Learn About Sponsorship →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

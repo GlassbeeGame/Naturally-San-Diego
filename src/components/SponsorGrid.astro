@@ -1,0 +1,117 @@
+---
+const tiers = [
+  {
+    label: 'Platinum',
+    size: 'h-24',
+    sponsors: [
+      { name: 'Bank of America', file: 'b-of-a-square-for-web.png' },
+      { name: 'Perfect Snacks', file: 'perfect-snacks-500-x-500.png' },
+    ],
+  },
+  {
+    label: 'Gold',
+    size: 'h-20',
+    sponsors: [
+      { name: 'Procopio', file: 'procopio-500-x-500-300x300.png' },
+      { name: "Dr. Bronner's", file: 'bronners-500-x-500-300x300.png' },
+      { name: 'The Coconut Cult', file: 'coconut-cult-new-500-x-500-300x300.png' },
+      { name: 'Marsh McLennan', file: 'marsh-500-x-500-300x300.png' },
+      { name: 'Cambridge SPG', file: 'Cambridge_SPG_stacked-300-x-300.png' },
+      { name: 'Luminize Marketing', file: 'luminize-updated-500-x-500-300x300.png' },
+      { name: 'Kalon Executive Search', file: 'kalon-exec-search-500-x-500-300x300.png' },
+      // Chosen Foods and Suja Juice — logo files not identified yet
+      { name: 'Chosen Foods', file: null },
+      { name: 'Suja Juice', file: null },
+    ],
+  },
+  {
+    label: 'Silver',
+    size: 'h-16',
+    sponsors: [
+      { name: 'Purely Righteous Brands', file: 'prb-500-x-500-180x180.png' },
+      { name: 'BevNET', file: 'bevnet-500-x-500-180x180.png' },
+      { name: 'JPMorgan Chase', file: 'jpmorgan-chase-500-x-500-180x180.png' },
+      { name: 'RSM US', file: 'rsm-logo-180x180.png' },
+      { name: 'Chuao Chocolatier', file: 'chuao-sponsor-blank-180x180.png' },
+      { name: 'Om Mushrooms', file: 'om-mushrooms-500-x-500-180x180.png' },
+      { name: 'Primary Funding', file: 'primary-funding-500-x-500-180x180.png' },
+      { name: 'Modifly', file: 'modifly-500-x-500-180x180.png' },
+      { name: 'Comerica', file: 'Comerica-Sponsor-Logo-180x180.png' },
+    ],
+  },
+  {
+    label: 'Bronze',
+    size: 'h-14',
+    sponsors: [
+      { name: "Bitchin' Sauce", file: 'Bitchin-_-Bronze-180x180.jpg' },
+      { name: 'Bex Brands', file: 'bex-brands-500-x-500-180x180.png' },
+      { name: 'Pitaya Foods', file: 'pitaya-500-x-500-180x180.png' },
+      { name: 'RationAle', file: 'rationale-500-x-500-180x180.png' },
+      { name: 'Chomps', file: 'chomps-500-x-500-180x180.png' },
+      { name: 'BUBS Naturals', file: null },
+      { name: 'Solti', file: null },
+      { name: 'Team PSC', file: null },
+      { name: 'Red Door Interactive', file: null },
+    ],
+  },
+  {
+    label: 'Emerging Brands',
+    size: 'h-12',
+    sponsors: [
+      { name: 'Gear Hugger', file: 'Gear-Hugger-NSD-sponsor-blank-copy-180x180.jpg' },
+      { name: 'Sipwell', file: 'sipwell-updated-500-x-500-180x180.png' },
+      { name: 'Invert Container', file: 'invert-500-x-500-180x180.png' },
+      { name: 'Verity Case', file: null },
+    ],
+  },
+  {
+    label: 'Naturally Network Partners',
+    size: 'h-12',
+    sponsors: [
+      { name: 'New Hope Network', file: 'new-hope-500-x-500-180x180.png' },
+      { name: 'NielsenIQ', file: null },
+      { name: 'SPINS', file: null },
+      { name: 'Wells Fargo', file: null },
+      { name: 'New Nexus Group', file: null },
+      { name: 'KeHE', file: null },
+      { name: 'ForceBrands', file: null },
+      { name: 'Moss Adams', file: null },
+      { name: 'Beyond Brands', file: null },
+      { name: 'ePac Flexibles', file: null },
+      { name: 'Amin Talati', file: null },
+    ],
+  },
+];
+---
+
+<div class="space-y-12">
+  {tiers.map(tier => (
+    <div>
+      <h3
+        class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-6 pb-3 border-b border-gray-100"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        {tier.label}
+      </h3>
+      <div class="flex flex-wrap items-center gap-6">
+        {tier.sponsors.map(s => (
+          s.file ? (
+            <img
+              src={`/sponsors/${s.file}`}
+              alt={s.name}
+              class={`${tier.size} w-auto max-w-[120px] object-contain grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100`}
+              loading="lazy"
+            />
+          ) : (
+            <span
+              class="inline-block border border-gray-200 rounded-xl px-4 py-2 text-sm font-semibold text-gray-500"
+              style="font-family: 'Poppins', sans-serif;"
+            >
+              {s.name}
+            </span>
+          )
+        ))}
+      </div>
+    </div>
+  ))}
+</div>

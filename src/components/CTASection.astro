@@ -1,0 +1,60 @@
+---
+interface Props {
+  headline: string;
+  body: string;
+  cta1Label: string;
+  cta1Href: string;
+  cta2Label?: string;
+  cta2Href?: string;
+  cta1External?: boolean;
+}
+
+const { headline, body, cta1Label, cta1Href, cta2Label, cta2Href, cta1External = false } = Astro.props;
+---
+
+<section class="relative py-6 px-6 lg:px-10 overflow-hidden" style="background: linear-gradient(140deg, #C3DB66 0%, #00AD5A 40%, #006A45 100%);">
+  <!-- Subtle noise grain -->
+  <div class="absolute inset-0 pointer-events-none opacity-30" style="background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E\"); background-size: 200px 200px;"></div>
+
+  <div class="relative max-w-7xl mx-auto">
+    <div
+      class="relative overflow-hidden rounded-3xl px-8 lg:px-16 py-14 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10"
+      style="background: #111;"
+    >
+      <!-- Subtle lime glow inside dark card -->
+      <div class="absolute top-0 left-0 w-64 h-64 pointer-events-none" style="background: radial-gradient(ellipse at 0% 0%, rgba(195,219,102,0.08), transparent 70%);"></div>
+
+      <div class="text-center lg:text-left relative z-10">
+        <h2
+          class="text-3xl lg:text-4xl xl:text-5xl font-black text-white leading-tight"
+          style="font-family: 'Poppins', sans-serif; letter-spacing: -0.03em;"
+        >
+          {headline}
+        </h2>
+        <p class="text-base text-white/50 mt-4 max-w-md leading-relaxed" style="font-family: 'Lato', sans-serif;">
+          {body}
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0 justify-center relative z-10">
+        <a
+          href={cta1Href}
+          {...(cta1External ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          class="bg-[#F26447] hover:bg-orange-500 text-white font-bold text-sm px-8 py-4 rounded-full transition-all hover:shadow-lg hover:shadow-orange-500/25"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          {cta1Label}
+        </a>
+        {cta2Label && cta2Href && (
+          <a
+            href={cta2Href}
+            class="border border-white/20 hover:border-white/60 hover:bg-white/5 text-white font-bold text-sm px-8 py-4 rounded-full transition-all"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            {cta2Label}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

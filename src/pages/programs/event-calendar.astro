@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import GlueUpWidget from '../../components/GlueUpWidget.astro';
+---
+
+<Layout title="Event Calendar — Naturally San Diego">
+
+  <PageHero
+    eyebrow="Programs"
+    title="Event Calendar"
+    subtitle="Everything coming up in San Diego's natural products community."
+    bgColor="#00B2AD"
+  />
+
+  <section class="py-12 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <GlueUpWidget
+        widgetId="eb-widget-event-list"
+        src="https://naturallysandiego.glueup.com/organization/1739/widget/event-list/full-view"
+        title="Naturally San Diego Event Calendar"
+        minHeight="800px"
+        autoWidth={false}
+      />
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#f9f9f8] rounded-2xl px-8 py-6">
+        <div>
+          <p class="font-black text-[#111] text-base" style="font-family: 'Poppins', sans-serif;">Don't see what you're looking for?</p>
+          <p class="text-sm text-[#111]/55 mt-0.5" style="font-family: 'Lato', sans-serif;">Browse the full event listing directly on GlueUp.</p>
+        </div>
+        <a
+          href="https://naturallysandiego.glueup.com/org/naturallysandiego/events/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex-shrink-0 bg-[#00B2AD] hover:bg-[#009e9a] text-white font-bold text-sm px-7 py-3.5 rounded-full transition-colors"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          View All Events on GlueUp →
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

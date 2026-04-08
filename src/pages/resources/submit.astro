@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import FormspreeForm from '../../components/FormspreeForm.astro';
+
+const submitFields = [
+  { name: 'name', label: 'Your Name', type: 'text' as const, required: true },
+  { name: 'company', label: 'Company / Brand', type: 'text' as const, required: true },
+  { name: 'email', label: 'Email Address', type: 'email' as const, required: true },
+  {
+    name: 'type',
+    label: 'Type of Submission',
+    type: 'select' as const,
+    required: true,
+    options: ['Member Win', 'Company News', 'Product Launch', 'Industry News', 'Event Announcement', 'Other'],
+  },
+  { name: 'title', label: 'Title / Headline', type: 'text' as const, required: true, placeholder: 'We just launched in Whole Foods!' },
+  { name: 'description', label: 'Description', type: 'textarea' as const, required: true, placeholder: 'Tell us the story...' },
+  { name: 'url', label: 'Link (optional)', type: 'text' as const, placeholder: 'https://...' },
+];
+
+const whatCounts = [
+  'New retail placement or distribution deal',
+  'Funding round or investment news',
+  'Product launch or rebrand',
+  'Award, press mention, or recognition',
+  'Hiring milestone or team growth',
+  'Event or workshop you\'re hosting',
+];
+---
+
+<Layout title="Submit News — Naturally San Diego">
+
+  <PageHero
+    eyebrow="Resources"
+    title="Share Your News"
+    subtitle="Got something worth celebrating? We want to hear it."
+    bgColor="#00B2AD"
+  />
+
+  <section class="py-16 lg:py-20 px-6 lg:px-10">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+
+      <!-- ── Left: Context card ───────────────────────────── -->
+      <div class="bg-[#111] rounded-3xl p-8 lg:p-10 flex flex-col gap-8 relative overflow-hidden">
+
+        <div
+          class="absolute inset-0 opacity-[0.06]"
+          style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"
+          aria-hidden="true"
+        ></div>
+
+        <!-- Logo lockup -->
+        <div class="relative flex items-center gap-3">
+          <img src="/NN_Icon.png" alt="" aria-hidden="true" class="h-10 w-10 rounded-full" />
+          <span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1rem; color: #fff; line-height: 1.2;">
+            Naturally<br /><span style="color: rgba(255,255,255,0.55); font-weight: 600;">San Diego</span>
+          </span>
+        </div>
+
+        <div class="relative h-px bg-white/10"></div>
+
+        <div class="relative">
+          <p class="text-xs font-bold uppercase tracking-widest text-[#C3DB66] mb-3" style="font-family: 'Poppins', sans-serif;">
+            What Counts
+          </p>
+          <p class="text-sm text-white/65 leading-relaxed mb-5" style="font-family: 'Lato', sans-serif;">
+            If it's happening in your world, we want to amplify it. Here's what the community loves to celebrate:
+          </p>
+          <ul class="flex flex-col gap-2.5">
+            {whatCounts.map(item => (
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-[#C3DB66] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-sm text-white/70 leading-snug" style="font-family: 'Lato', sans-serif;">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="relative h-px bg-white/10"></div>
+
+        <div class="relative">
+          <p class="text-xs font-bold uppercase tracking-widest text-[#C3DB66] mb-2" style="font-family: 'Poppins', sans-serif;">
+            After You Submit
+          </p>
+          <p class="text-sm text-white/55 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+            Our team reviews every submission and shares standout wins in our newsletter, Slack, and social channels.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- ── Right: Form card ─────────────────────────────── -->
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 lg:p-10">
+        <div class="mb-8">
+          <p class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-2" style="font-family: 'Poppins', sans-serif;">
+            Submit Your News
+          </p>
+          <h2 class="text-2xl font-black text-[#111]" style="font-family: 'Poppins', sans-serif; letter-spacing: -0.02em;">
+            Tell us what's happening.
+          </h2>
+          <p class="text-sm text-[#111]/55 mt-2" style="font-family: 'Lato', sans-serif;">
+            We review every submission and share the best with the community.
+          </p>
+        </div>
+        <!-- TODO: add Formspree endpoint — create account at formspree.io (Submit News → info@naturallysandiego.org) -->
+        <FormspreeForm
+          action=""
+          fields={submitFields}
+          submitLabel="Submit News"
+        />
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

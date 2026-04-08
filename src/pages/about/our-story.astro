@@ -1,0 +1,165 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const values = [
+  { title: 'Building an inclusive community', body: 'Day-one founders and industry veterans, side by side.' },
+  { title: 'Transparency, always', body: 'With our members, sponsors, and partners. No exceptions.' },
+  { title: 'Showing up for the people who show up', body: 'We invest in the people who invest in this community.' },
+  { title: 'Staying curious', body: 'Because the industry never stops moving, and neither do we.' },
+  { title: 'Collaboration over competition', body: 'Always. A rising tide lifts every brand in the room.' },
+  { title: 'Creativity and entrepreneurial spirit', body: 'In everything we build: events, programs, and beyond.' },
+  { title: 'Leaving the planet better', body: 'Certified partner of 1% for the Planet. We mean it.' },
+];
+---
+
+<Layout title="Our Story — Naturally San Diego">
+
+  <PageHero
+    eyebrow="About"
+    title="Five years in. Still just getting started."
+    subtitle="We started in 2020. The community took it from there."
+  />
+
+  <!-- Story + Photo -->
+  <section class="py-16 lg:py-20 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <!-- Left: Mission -->
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-6" style="font-family: 'Poppins', sans-serif;">Our Story</p>
+        <p class="text-lg text-[#111]/80 leading-relaxed mb-6" style="font-family: 'Lato', sans-serif;">
+          Naturally San Diego launched in 2020 with a simple belief: San Diego has everything it takes to be the next great hub for natural products and CPG. The talent, the brands, the energy were all here. What it needed was a community to pull it all together.
+        </p>
+        <p class="text-lg text-[#111]/80 leading-relaxed mb-6" style="font-family: 'Lato', sans-serif;">
+          Five years later, that community is real. Founders, investors, retailers, and industry veterans showing up for each other. Pitch competitions, coffee, Slack, and every event in between.
+        </p>
+        <p class="text-lg font-semibold text-[#111] leading-relaxed" style="font-family: 'Lato', sans-serif;">
+          We're not a trade association. We're not a networking club. We're the connective tissue of San Diego's natural products ecosystem.
+        </p>
+      </div>
+
+      <!-- Right: Community photo -->
+      <div class="relative">
+        <div class="rounded-2xl overflow-hidden" style="aspect-ratio: 4/3;">
+          <img
+            src="/events/Naturally-San-Diego-Board-of-Directors-1000x589-11.17.22-768x452.jpg"
+            alt="Naturally San Diego community gathering"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <!-- Caption badge -->
+        <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2">
+          <p class="text-xs font-bold text-[#006A45]" style="font-family: 'Poppins', sans-serif;">NSD Community · 2022</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- What We Stand For -->
+  <section class="bg-[#f9f9f8] py-16 lg:py-20 px-6 lg:px-10">
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-10">
+        <p class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-3" style="font-family: 'Poppins', sans-serif;">Our Values</p>
+        <h2 class="text-3xl font-black text-[#111]" style="font-family: 'Poppins', sans-serif; letter-spacing: -0.02em;">What We Stand For</h2>
+      </div>
+
+      <div class="divide-y divide-[#111]/8">
+        {values.map((v, i) => (
+          <div class="py-6 grid grid-cols-[2.5rem_1fr] sm:grid-cols-[2.5rem_14rem_1fr] gap-x-6 gap-y-1 items-baseline">
+            <span
+              class="text-xs font-black text-[#006A45] tabular-nums"
+              style="font-family: 'Poppins', sans-serif;"
+            >
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3
+              class="font-black text-[#111] leading-snug"
+              style="font-family: 'Poppins', sans-serif; font-size: 0.95rem;"
+            >
+              {v.title}
+            </h3>
+            <p
+              class="col-start-2 sm:col-start-3 text-sm text-[#111]/55 leading-relaxed"
+              style="font-family: 'Lato', sans-serif;"
+            >
+              {v.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Affiliations: Naturally Network + 1% for Planet -->
+  <section class="py-12 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5">
+
+      <!-- Naturally Network -->
+      <div class="bg-[#006A45] rounded-2xl px-8 py-10 flex flex-col gap-5">
+        <div class="flex items-center gap-3">
+          <img src="/NN_Icon.png" alt="" aria-hidden="true" class="h-10 w-10 rounded-full" loading="lazy" />
+          <span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1rem; line-height: 1.1; color: #fff;">
+            Naturally<br/><span style="color: rgba(255,255,255,0.6); font-weight: 600;">San Diego</span>
+          </span>
+        </div>
+        <div>
+          <h3 class="text-lg font-black text-white mb-2" style="font-family: 'Poppins', sans-serif;">
+            Part of the Naturally Network
+          </h3>
+          <p class="text-sm text-white/65 leading-relaxed mb-5" style="font-family: 'Lato', sans-serif;">
+            Naturally San Diego is a chapter of the Naturally Network, a national community of natural products entrepreneurs with chapters in New York, NorCal, Colorado, and beyond.
+          </p>
+          <a
+            href="https://naturallynetwork.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-bold text-[#C3DB66] hover:text-white transition-colors"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            Visit naturallynetwork.org →
+          </a>
+        </div>
+      </div>
+
+      <!-- 1% for the Planet -->
+      <div class="bg-white border border-gray-100 rounded-2xl px-8 py-10 flex flex-col gap-5">
+        <a
+          href="https://directories.onepercentfortheplanet.org/profile/naturally-san-diego"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="/badges/1ftp_NonprofitPartner_Horizontal_Black-scaled.png"
+            alt="1% for the Planet Nonprofit Partner"
+            class="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
+            loading="lazy"
+          />
+        </a>
+        <div>
+          <h3 class="text-lg font-black text-[#111] mb-2" style="font-family: 'Poppins', sans-serif;">
+            1% for the Planet Partner
+          </h3>
+          <p class="text-sm text-[#111]/60 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+            Naturally San Diego is a certified nonprofit partner of 1% for the Planet, a global network of businesses and individuals committed to giving back to environmental causes.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <CTASection
+    headline="Join the community."
+    body="Five years of building San Diego's natural products scene. We're just getting started."
+    cta1Label="Become a Member"
+    cta1Href="https://app.glueup.com/org/naturallysandiego/memberships/"
+    cta1External={true}
+    cta2Label="See Upcoming Events →"
+    cta2Href="/programs/event-calendar"
+  />
+
+</Layout>

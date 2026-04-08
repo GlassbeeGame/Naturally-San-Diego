@@ -1,0 +1,175 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const events = [
+  {
+    color: 'bg-[#00B2AD]',
+    textColor: 'text-white',
+    title: 'Coffee & Convos',
+    description: 'No agenda. No pitch deck required. Just coffee and the people you\'ve been meaning to meet. Our monthly morning gatherings are exactly what they sound like: casual, energizing, and always worth your Tuesday morning.',
+  },
+  {
+    color: 'bg-[#C3DB66]',
+    textColor: 'text-[#006A45]',
+    title: 'Facility Tours',
+    description: 'Get behind the scenes at some of San Diego\'s most interesting natural products operations. From co-manufacturers to marketing shops, our facility tours put you inside the businesses that make the industry work.',
+  },
+  {
+    color: 'bg-[#006A45]',
+    textColor: 'text-white',
+    title: 'Networking Nights',
+    description: 'Evening events designed for the people doing the work. Founders, service providers, retailers, investors. All in one room, all there for the same reason. (The drinks help.)',
+  },
+  {
+    color: 'bg-[#00AD5A]',
+    textColor: 'text-white',
+    title: 'Office Hours',
+    description: 'Got a question? Bring it. Our Office Hours sessions match you with experts in areas like retail strategy, M&A, fundraising, and operations. Real answers from people who\'ve been there.',
+  },
+  {
+    color: 'bg-[#7E4558]',
+    textColor: 'text-white',
+    title: 'Founder Series',
+    description: 'In-depth conversations with founders who\'ve built something real. Past speakers include Jaime Schmidt, Founder of Schmidt\'s Naturals. No fluff. Just the real story.',
+  },
+];
+---
+
+<Layout title="Monthly Events — Naturally San Diego">
+
+  <PageHero
+    eyebrow="Programs"
+    title="Monthly Events"
+    subtitle="Social butterfly or wallflower, we've got something for you."
+    bgColor="#00B2AD"
+  />
+
+  <!-- Intro -->
+  <section class="py-14 px-6 lg:px-10">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-lg text-[#111]/70 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+        As a Naturally San Diego member, you get access to exclusive programming brought to you by the community itself: natural products brands, industry leaders, and the service providers who make it all run. New events added every month.
+      </p>
+    </div>
+  </section>
+
+  <!-- Event types -->
+  <section class="pb-16 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-5">
+      {events.map((event, i) => (
+        <div class={`${event.color} rounded-2xl p-7 ${i === 4 ? 'sm:col-span-2 lg:max-w-xl lg:mx-auto w-full' : ''}`}>
+          <h3
+            class={`text-xl font-black mb-3 ${event.textColor}`}
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            {event.title}
+          </h3>
+          <p
+            class={`text-sm leading-relaxed ${event.textColor} opacity-80`}
+            style="font-family: 'Lato', sans-serif;"
+          >
+            {event.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Calendar CTA -->
+  <section class="py-10 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#f9f9f8] rounded-2xl px-8 py-6">
+      <div>
+        <p class="font-black text-[#111] text-base" style="font-family: 'Poppins', sans-serif;">Want to see what's coming up?</p>
+        <p class="text-sm text-[#111]/55 mt-0.5" style="font-family: 'Lato', sans-serif;">Dates, locations, and registration are all on the GlueUp calendar.</p>
+      </div>
+      <a
+        href="https://naturallysandiego.glueup.com/org/naturallysandiego/events/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-shrink-0 bg-[#00B2AD] hover:bg-[#009e9a] text-white font-bold text-sm px-7 py-3.5 rounded-full transition-colors"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        View Full Calendar →
+      </a>
+    </div>
+  </section>
+
+  <!-- Annual Events -->
+  <section class="py-10 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5">
+
+      <!-- Naturally Rising -->
+      <div class="bg-[#111] rounded-2xl p-8 lg:p-10 flex flex-col justify-between gap-6 relative overflow-hidden">
+        <div
+          class="absolute inset-0 opacity-[0.05]"
+          style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"
+          aria-hidden="true"
+        ></div>
+        <div class="relative">
+          <span
+            class="inline-block bg-[#C3DB66] text-[#006A45] text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-5"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            Annual Event · Spring
+          </span>
+          <h2
+            class="text-3xl font-black text-white mb-3"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            Naturally Rising
+          </h2>
+          <p class="text-base text-white/60 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+            San Diego's biggest natural products pitch competition. 35+ applicants. 6 finalists. 350-person audience. $500K+ awarded since 2021.
+          </p>
+        </div>
+        <a
+          href="/programs/naturally-rising"
+          class="relative self-start text-sm font-bold text-white border border-white/25 hover:border-white hover:bg-white/10 px-5 py-2.5 rounded-full transition-colors"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Learn More →
+        </a>
+      </div>
+
+      <!-- Fall Fling -->
+      <div class="bg-[#111] rounded-2xl p-8 lg:p-10 flex flex-col justify-between gap-6 relative overflow-hidden">
+        <div
+          class="absolute inset-0 opacity-[0.05]"
+          style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"
+          aria-hidden="true"
+        ></div>
+        <div class="relative">
+          <span
+            class="inline-block bg-[#C3DB66] text-[#006A45] text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-5"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            Annual Event · Fall
+          </span>
+          <h2
+            class="text-3xl font-black text-white mb-3"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            Fall Fling
+          </h2>
+          <p class="text-base text-white/60 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+            Our biggest community celebration of the year. Every fall, Naturally San Diego brings the whole ecosystem together: brands, sponsors, partners, and everyone in between.
+          </p>
+        </div>
+        <p class="relative text-xs text-white/30" style="font-family: 'Lato', sans-serif;">Details drop closer to the date.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <CTASection
+    headline="See what's coming up."
+    body="Check the full event calendar for dates, locations, and registration links."
+    cta1Label="View Event Calendar →"
+    cta1Href="/programs/event-calendar"
+    cta2Label="Become a Member"
+    cta2Href="https://app.glueup.com/org/naturallysandiego/memberships/"
+  />
+
+</Layout>

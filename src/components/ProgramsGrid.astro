@@ -1,0 +1,97 @@
+---
+const tiles = [
+  {
+    title: 'Naturally Rising',
+    subtitle: 'Pitch competition · $500K+ awarded',
+    href: '/programs/naturally-rising',
+    bg: '#006A45',
+    text: 'text-white',
+    subtitleText: 'text-white/60',
+    photo: '/events/PitchSlam2023-175-scaled-e1685123998781-495x400.jpg',
+    span: 'lg:col-span-2',
+  },
+  {
+    title: 'CPG Academy',
+    subtitle: 'Education & workshops',
+    href: '/resources/cpg-academy',
+    bg: '#00B2AD',
+    text: 'text-white',
+    subtitleText: 'text-white/70',
+    span: '',
+  },
+  {
+    title: 'Monthly Events',
+    subtitle: 'Coffee & Convos, tours, and more',
+    href: '/programs/monthly-events',
+    bg: '#C3DB66',
+    text: 'text-[#006A45]',
+    subtitleText: 'text-[#006A45]/70',
+    span: '',
+  },
+  {
+    title: 'Job Board',
+    subtitle: 'Powered by ForceBrands · 5,000+ network',
+    href: '/resources/job-board',
+    bg: '#F26447',
+    text: 'text-white',
+    subtitleText: 'text-white/70',
+    span: '',
+  },
+  {
+    title: 'Slack Community',
+    subtitle: 'Members-only channel',
+    href: '/resources/slack',
+    bg: '#00AD5A',
+    text: 'text-white',
+    subtitleText: 'text-white/70',
+    span: '',
+  },
+  {
+    title: 'Naturally Network',
+    subtitle: 'NY · NorCal · Colorado & more',
+    href: 'https://naturallynetwork.org',
+    bg: '#7E4558',
+    text: 'text-white',
+    subtitleText: 'text-white/70',
+    external: true,
+    span: '',
+  },
+];
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+  {tiles.map(tile => (
+    <a
+      href={tile.href}
+      {...(tile.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      class={`relative overflow-hidden rounded-2xl flex flex-col justify-between hover-scale ${tile.span} ${tile.border ? 'border border-gray-200' : ''}`}
+      style={`background-color: ${tile.bg}; min-height: 220px; padding: 28px;`}
+    >
+
+      <div class="relative z-10">
+        <h3
+          class={`font-black leading-tight ${tile.text}`}
+          style={`font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 2vw, 1.5rem); letter-spacing: -0.02em;`}
+        >
+          {tile.title}
+        </h3>
+        <p
+          class={`text-sm mt-2 leading-snug ${tile.subtitleText}`}
+          style="font-family: 'Lato', sans-serif;"
+        >
+          {tile.subtitle}
+        </p>
+      </div>
+
+      {/* Arrow in bottom-right */}
+      <div class="relative z-10 flex items-end justify-between mt-8">
+        <span
+          class={`text-xs font-bold ${tile.text} opacity-60`}
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          {tile.external ? 'Visit →' : 'Explore →'}
+        </span>
+      </div>
+    </a>
+  ))}
+</div>

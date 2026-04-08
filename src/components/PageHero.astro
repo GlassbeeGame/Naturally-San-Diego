@@ -1,0 +1,91 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  eyebrow?: string;
+  bgColor?: string;
+  bgImage?: string;
+  darkText?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  eyebrow,
+  bgColor = '#006A45',
+  bgImage,
+  darkText = false,
+} = Astro.props;
+
+const isLight = darkText;
+const textColor = isLight ? '#111' : '#fff';
+const subtitleColor = isLight ? 'rgba(17,17,17,0.6)' : 'rgba(255,255,255,0.65)';
+const eyebrowColor = isLight ? bgColor : '#C3DB66';
+---
+
+<section
+  class="relative overflow-hidden"
+  style={`background-color: ${bgColor}; min-height: 420px;`}
+>
+  <!-- Photo background -->
+  {bgImage && (
+    <img
+      src={bgImage}
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full object-cover"
+      style="object-position: center 35%;"
+      loading="lazy"
+    />
+  )}
+
+  <!-- Photo overlay or depth gradient -->
+  {bgImage
+    ? <div class="absolute inset-0" style={`background: linear-gradient(110deg, ${bgColor}f2 0%, ${bgColor}c0 55%, ${bgColor}70 100%);`}></div>
+    : <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(0,0,0,0.18) 0%, transparent 55%);"></div>
+  }
+
+  <!-- Subtle dot pattern -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    aria-hidden="true"
+    style={`background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 28px 28px;`}
+  ></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-14 lg:pt-16 flex flex-col justify-end" style="min-height: 420px;">
+    {eyebrow && (
+      <div class="flex items-center gap-3 mb-5">
+        <div class="h-0.5 w-6 rounded-full" style={`background-color: ${eyebrowColor};`}></div>
+        <span
+          class="text-xs font-bold uppercase"
+          style={`font-family: 'Poppins', sans-serif; letter-spacing: 0.18em; color: ${eyebrowColor};`}
+        >
+          {eyebrow}
+        </span>
+      </div>
+    )}
+
+    <h1
+      style={`font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(2.25rem, 5vw, 3.75rem); line-height: 1.05; letter-spacing: -0.03em; color: ${textColor}; max-width: 720px;`}
+    >
+      {title}
+    </h1>
+
+    {subtitle && (
+      <p
+        class="mt-4 max-w-xl leading-relaxed text-lg"
+        style={`font-family: 'Lato', sans-serif; color: ${subtitleColor};`}
+      >
+        {subtitle}
+      </p>
+    )}
+  </div>
+
+  <!-- Angled white bottom cut -->
+  <div class="absolute bottom-0 left-0 right-0 pointer-events-none" aria-hidden="true" style="height: 64px;">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="width: 100%; height: 100%; display: block;">
+      <polygon points="0,100 100,30 100,100" fill="white"/>
+    </svg>
+  </div>
+</section>

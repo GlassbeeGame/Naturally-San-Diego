@@ -1,0 +1,244 @@
+<!-- Newsletter popup — shows after 10s OR 60% scroll, once per session, never again after subscribe -->
+
+<!-- Backdrop -->
+<div
+  id="nl-backdrop"
+  class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center px-4"
+  style="display: none !important; opacity: 0; transition: opacity 0.3s ease;"
+  aria-modal="true"
+  role="dialog"
+  aria-labelledby="nl-heading"
+>
+
+  <!-- Card -->
+  <div
+    id="nl-card"
+    class="relative bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden"
+    style="transform: translateY(16px); transition: transform 0.3s ease;"
+  >
+
+    <!-- Dark top band -->
+    <div class="bg-[#111] px-8 pt-8 pb-6 relative overflow-hidden">
+      <!-- Dot texture -->
+      <div
+        class="absolute inset-0 opacity-[0.08]"
+        style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 18px 18px;"
+        aria-hidden="true"
+      ></div>
+      <!-- Close button -->
+      <button
+        id="nl-close"
+        class="absolute top-4 right-4 text-white/50 hover:text-white transition-colors p-1 rounded-full"
+        aria-label="Close"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <!-- Logo + headline -->
+      <div class="flex items-center gap-2.5 mb-5 relative">
+        <img src="/NN_Icon.png" alt="" aria-hidden="true" class="h-8 w-8 rounded-full" />
+        <span class="text-xs font-bold text-white/60 uppercase tracking-widest" style="font-family: 'Poppins', sans-serif;">Naturally San Diego</span>
+      </div>
+      <h2 id="nl-heading" class="text-2xl font-black text-white leading-tight relative" style="font-family: 'Poppins', sans-serif; letter-spacing: -0.02em;">
+        Stay in the loop.
+      </h2>
+      <p class="text-sm text-white/65 mt-2 leading-relaxed relative" style="font-family: 'Lato', sans-serif;">
+        Events, member news, and what's happening in San Diego's natural products scene. Straight to your inbox.
+      </p>
+    </div>
+
+    <!-- Form / Success container -->
+    <div class="px-8 py-7">
+
+      <!-- Form (shown by default) -->
+      <form id="nl-form" action="" method="POST" style="transition: opacity 0.3s ease;">
+        <input type="hidden" name="_next" value="/thank-you" />
+        <input type="text" name="_gotcha" style="display:none" />
+
+        <div class="flex flex-col sm:flex-row gap-2">
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="your@email.com"
+            aria-label="Email address"
+            class="flex-1 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#111] placeholder:text-gray-400 focus:outline-none focus:border-[#00AD5A] transition-colors"
+            style="font-family: 'Lato', sans-serif;"
+          />
+          <button
+            type="submit"
+            class="flex-shrink-0 bg-[#F26447] hover:bg-orange-600 text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            Subscribe
+          </button>
+        </div>
+        <p class="text-xs text-[#111]/35 text-center mt-3" style="font-family: 'Lato', sans-serif;">
+          No spam. Unsubscribe anytime.
+        </p>
+      </form>
+
+      <!-- Success state (hidden by default) -->
+      <div
+        id="nl-success"
+        class="text-center py-2"
+        style="display: none; opacity: 0; transition: opacity 0.4s ease;"
+        aria-live="polite"
+      >
+        <!-- Animated checkmark -->
+        <div class="mx-auto mb-5 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(0,173,90,0.08);">
+          <svg class="w-9 h-9" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+            <circle
+              cx="18" cy="18" r="15"
+              stroke="#00AD5A"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-dasharray="94.25"
+              stroke-dashoffset="94.25"
+              id="nl-check-circle"
+              style="transition: stroke-dashoffset 0.55s cubic-bezier(0.4,0,0.2,1) 0.05s;"
+            />
+            <path
+              d="M11 18.5l5.5 5.5 9-10"
+              stroke="#00AD5A"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-dasharray="22"
+              stroke-dashoffset="22"
+              id="nl-check-path"
+              style="transition: stroke-dashoffset 0.4s cubic-bezier(0.4,0,0.2,1) 0.45s;"
+            />
+          </svg>
+        </div>
+
+        <h3
+          class="text-xl font-black text-[#111] mb-2"
+          style="font-family: 'Poppins', sans-serif; letter-spacing: -0.02em;"
+        >
+          You're in!
+        </h3>
+        <p
+          class="text-sm leading-relaxed"
+          style="font-family: 'Lato', sans-serif; color: rgba(17,17,17,0.55);"
+        >
+          Welcome to the community. Watch your inbox for events, member wins, and what's happening in SD's natural products scene.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const SESSION_KEY = 'nsd_nl_shown';
+  const SUBSCRIBED_KEY = 'nsd_nl_subscribed';
+  const DELAY_MS = 10000;
+
+  const backdrop = document.getElementById('nl-backdrop') as HTMLElement;
+  const card = document.getElementById('nl-card') as HTMLElement;
+  const closeBtn = document.getElementById('nl-close');
+  const form = document.getElementById('nl-form') as HTMLFormElement;
+  const successEl = document.getElementById('nl-success') as HTMLElement;
+
+  // Skip on member portal and thank-you pages
+  const skipPages = ['/member-portal', '/thank-you'];
+  if (skipPages.some(p => window.location.pathname.startsWith(p))) {
+    // do nothing
+  } else {
+    const alreadyShownThisSession = sessionStorage.getItem(SESSION_KEY);
+    const hasSubscribed = localStorage.getItem(SUBSCRIBED_KEY);
+    const shouldShow = !alreadyShownThisSession && !hasSubscribed;
+
+    if (shouldShow) {
+      let shown = false;
+
+      const show = () => {
+        if (shown) return;
+        shown = true;
+        backdrop.style.removeProperty('display');
+        backdrop.style.display = 'flex';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            backdrop.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          });
+        });
+      };
+
+      const timer = setTimeout(show, DELAY_MS);
+
+      const onScroll = () => {
+        const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+        if (scrolled > 0.6) {
+          clearTimeout(timer);
+          show();
+          window.removeEventListener('scroll', onScroll);
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  }
+
+  const dismiss = () => {
+    backdrop.style.opacity = '0';
+    card.style.transform = 'translateY(16px)';
+    setTimeout(() => { backdrop.style.display = 'none'; }, 300);
+    sessionStorage.setItem(SESSION_KEY, '1');
+  };
+
+  closeBtn?.addEventListener('click', dismiss);
+
+  backdrop?.addEventListener('click', (e) => {
+    if (e.target === backdrop) dismiss();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') dismiss();
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // If a real Formspree endpoint is set, submit via fetch so we control the success state
+    const action = form.action;
+    if (action && !action.endsWith('#') && !action.endsWith('/')) {
+      try {
+        const data = new FormData(form);
+        await fetch(action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+      } catch (_) {
+        // fail silently — still show success UX
+      }
+    }
+
+    // Mark subscribed so popup never shows again
+    localStorage.setItem(SUBSCRIBED_KEY, '1');
+    sessionStorage.setItem(SESSION_KEY, '1');
+
+    // Fade out form → fade in success
+    form.style.opacity = '0';
+    setTimeout(() => {
+      form.style.display = 'none';
+      successEl.style.display = 'block';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          successEl.style.opacity = '1';
+          // Trigger checkmark draw animations
+          const circle = document.getElementById('nl-check-circle') as SVGPathElement | null;
+          const check = document.getElementById('nl-check-path') as SVGPathElement | null;
+          if (circle) circle.style.strokeDashoffset = '0';
+          if (check) check.style.strokeDashoffset = '0';
+        });
+      });
+    }, 300);
+
+    // Auto-close after success is fully visible
+    setTimeout(dismiss, 3000);
+  });
+</script>

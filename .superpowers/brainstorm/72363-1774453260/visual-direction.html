@@ -1,0 +1,172 @@
+<style>
+  .direction-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 16px;
+  }
+  .dir-card {
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .dir-card:hover { border-color: #00AD5A; transform: translateY(-2px); }
+  .dir-card.selected { border-color: #00AD5A; box-shadow: 0 0 0 3px rgba(0,173,90,0.2); }
+  .dir-card .letter { background: #006A45; color: white; font-size: 12px; font-weight: 700; padding: 4px 10px; letter-spacing: 1px; text-transform: uppercase; }
+  .dir-hero {
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .dir-hero .headline { font-size: 15px; font-weight: 800; line-height: 1.2; margin-bottom: 8px; }
+  .dir-hero .cta-row { display: flex; gap: 6px; }
+  .dir-hero .btn-primary { padding: 5px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+  .dir-hero .btn-secondary { padding: 5px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+  .dir-body { padding: 14px; background: white; }
+  .dir-body .name { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 4px; }
+  .dir-body .desc { font-size: 11px; color: #666; line-height: 1.5; }
+  .dir-tag { display: inline-block; font-size: 10px; font-weight: 600; border-radius: 4px; padding: 2px 8px; margin-top: 8px; }
+
+  /* DIRECTION A — Editorial Bold */
+  .hero-a {
+    background: #006A45;
+    font-family: 'Georgia', serif;
+  }
+  .hero-a .headline { color: white; font-family: 'Arial Black', sans-serif; font-size: 17px; }
+  .hero-a .photo-bg {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, #006A45 0%, #00AD5A 60%, #C3DB66 100%);
+    opacity: 0.85;
+  }
+  .hero-a .content { position: relative; z-index: 1; }
+  .hero-a .btn-primary { background: #F26447; color: white; border: none; }
+  .hero-a .btn-secondary { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.6); }
+  .hero-a .stat-strip { display: flex; gap: 14px; margin-top: 8px; }
+  .hero-a .stat { font-size: 10px; color: rgba(255,255,255,0.9); }
+  .hero-a .stat strong { display: block; font-size: 16px; color: white; font-weight: 900; }
+
+  /* DIRECTION B — Clean & Airy */
+  .hero-b {
+    background: white;
+  }
+  .hero-b .photo-strip {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 65px;
+    background: linear-gradient(to right, #C3DB66, #00AD5A, #00B2AD);
+  }
+  .hero-b .content { position: relative; z-index: 1; padding-top: 8px; }
+  .hero-b .eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #006A45; text-transform: uppercase; margin-bottom: 4px; }
+  .hero-b .headline { color: #006A45; font-size: 15px; }
+  .hero-b .btn-primary { background: #F26447; color: white; border: none; }
+  .hero-b .btn-secondary { background: transparent; color: #006A45; border: 1px solid #006A45; }
+
+  /* DIRECTION C — Photography-forward */
+  .hero-c {
+    background: linear-gradient(to bottom, rgba(0,30,15,0.2) 0%, rgba(0,106,69,0.75) 100%);
+  }
+  .hero-c::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(0,173,90,0.05) 0px,
+      rgba(0,173,90,0.05) 10px,
+      transparent 10px,
+      transparent 20px
+    );
+  }
+  .hero-c .content { position: relative; z-index: 1; }
+  .hero-c .headline { color: white; font-size: 16px; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+  .hero-c .tag { font-size: 9px; background: #C3DB66; color: #006A45; padding: 2px 8px; border-radius: 20px; font-weight: 700; display: inline-block; margin-bottom: 6px; }
+  .hero-c .btn-primary { background: #F26447; color: white; border: none; }
+  .hero-c .btn-secondary { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.5); backdrop-filter: blur(4px); }
+
+  /* Below-hero previews */
+  .preview-strip { display: flex; gap: 6px; margin-top: 10px; }
+  .preview-block { flex: 1; height: 12px; border-radius: 3px; }
+
+</style>
+
+<h2>Homepage Visual Direction</h2>
+<p class="subtitle">Three distinct design personalities — all using the Naturally San Diego brand colors. Pick the one that feels most like the community you're building for.</p>
+
+<div class="direction-cards">
+
+  <!-- DIRECTION A -->
+  <div class="dir-card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A — Bold & Editorial</div>
+    <div class="dir-hero hero-a">
+      <div class="photo-bg"></div>
+      <div class="content">
+        <div class="headline">San Diego's Natural<br>Products Community</div>
+        <div class="cta-row">
+          <span class="btn-primary">Be a Member</span>
+          <span class="btn-secondary">Our Events</span>
+        </div>
+        <div class="stat-strip">
+          <div class="stat"><strong>200+</strong>Members</div>
+          <div class="stat"><strong>50+</strong>Sponsors</div>
+          <div class="stat"><strong>30+</strong>Events/yr</div>
+        </div>
+      </div>
+    </div>
+    <div class="dir-body">
+      <div class="name">Bold & Editorial</div>
+      <div class="desc">Big type, high contrast, strong brand green presence. Stats lead. Similar to NorCal's energy but bolder. Community stats punch you in the face immediately.</div>
+      <span class="dir-tag" style="background:#C3DB66;color:#006A45;">High Impact</span>
+    </div>
+  </div>
+
+  <!-- DIRECTION B -->
+  <div class="dir-card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B — Clean & Airy</div>
+    <div class="dir-hero hero-b">
+      <div class="photo-strip"></div>
+      <div class="content">
+        <div class="eyebrow">San Diego · Natural Products</div>
+        <div class="headline">Where CPG Founders<br>Find Their Community</div>
+        <div class="cta-row">
+          <span class="btn-primary">Be a Member</span>
+          <span class="btn-secondary">Explore</span>
+        </div>
+      </div>
+    </div>
+    <div class="dir-body">
+      <div class="name">Clean & Airy</div>
+      <div class="desc">More whitespace, lighter feel, color used as accent not background. Feels modern and editorial. More like a startup community than a nonprofit. The NorCal vibe elevated.</div>
+      <span class="dir-tag" style="background:#e0f5ea;color:#006A45;">Modern & Fresh</span>
+    </div>
+  </div>
+
+  <!-- DIRECTION C -->
+  <div class="dir-card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C — Photography-Led</div>
+    <div class="dir-hero hero-c">
+      <div class="content">
+        <div class="tag">San Diego · Natural Products</div>
+        <div class="headline">Built by founders,<br>for founders.</div>
+        <div class="cta-row">
+          <span class="btn-primary">Join the Community</span>
+          <span class="btn-secondary">See Events</span>
+        </div>
+      </div>
+    </div>
+    <div class="dir-body">
+      <div class="name">Photography-Led</div>
+      <div class="desc">Hero is designed to showcase real community photography. Warm, human, story-driven. Copy punches hard with a short founder-voice line. Closest to NY's energy.</div>
+      <span class="dir-tag" style="background:#fde8e3;color:#c0391a;">Human & Warm</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="section" style="margin-top:24px;padding:16px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+  <p class="label">Note</p>
+  <p style="font-size:12px;color:#555;margin-top:4px;">These are direction sketches, not final designs. Once we pick a direction, I'll build a full-fidelity homepage mockup before writing any code. You can also mix elements — e.g., C's photography approach with B's typographic style.</p>
+</div>

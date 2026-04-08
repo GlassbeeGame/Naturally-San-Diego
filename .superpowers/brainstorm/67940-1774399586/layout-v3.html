@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSD — Layout Option 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; background: white; color: #111; }
+
+.page-banner {
+  background: #F26447; color: white; text-align: center;
+  font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 1px; padding: 8px;
+}
+
+/* NAV — minimal, almost invisible */
+nav {
+  padding: 22px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: white;
+}
+.logo {
+  font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 15px;
+  color: #111; letter-spacing: -0.5px;
+}
+.logo em { color: #00AD5A; font-style: normal; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 13px; font-weight: 600; color: #333; font-family: 'Poppins', sans-serif; text-decoration: none; }
+.nav-right { display: flex; gap: 10px; }
+.n-btn { padding: 8px 18px; border-radius: 100px; font-size: 12px; font-weight: 700; font-family: 'Poppins', sans-serif; }
+.n-btn-ghost { border: 1.5px solid #e0e0e0; color: #333; }
+.n-btn-fill { background: #F26447; color: white; }
+
+/* HERO — oversized text, full width, photo as texture not centerpiece */
+.hero {
+  padding: 64px 48px 0;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+.hero-inner {
+  max-width: 100%;
+  position: relative; z-index: 2;
+}
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: #00AD5A;
+  margin-bottom: 24px;
+}
+.hero-kicker::before {
+  content: '';
+  width: 24px; height: 2px; background: #00AD5A;
+}
+.hero-mega {
+  font-family: 'Poppins', sans-serif;
+  font-size: 80px; font-weight: 900; line-height: 0.92;
+  letter-spacing: -4px; color: #111;
+  margin-bottom: 0;
+}
+.hero-mega .line2 { color: #006A45; }
+.hero-mega .line3 { color: #111; }
+
+.hero-bottom {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px; margin-top: 40px;
+  padding-bottom: 0;
+}
+.hero-bottom-left {
+  display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 48px;
+}
+.hero-desc { font-size: 16px; line-height: 1.65; color: #555; max-width: 380px; margin-bottom: 32px; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.cta-primary { background: #006A45; color: white; padding: 15px 32px; border-radius: 100px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700; }
+.cta-secondary { color: #006A45; padding: 15px 0; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+.cta-secondary::after { content: '↗'; }
+
+.hero-photo-block {
+  background: #f5f5f3; border-radius: 20px 20px 0 0;
+  min-height: 360px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px;
+  position: relative; overflow: hidden;
+}
+.hero-photo-block::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,173,90,0.08) 0%, rgba(0,178,173,0.05) 100%);
+}
+.photo-icon { font-size: 52px; opacity: 0.2; }
+.photo-text { font-size: 10px; color: #bbb; letter-spacing: 2px; text-transform: uppercase; font-family: 'Poppins', sans-serif; }
+.hero-photo-block .photo-caption {
+  position: absolute; bottom: 20px; left: 20px; right: 20px;
+  background: rgba(0,106,69,0.85); backdrop-filter: blur(8px);
+  border-radius: 10px; padding: 14px 18px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.photo-caption .event-name { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700; color: white; }
+.photo-caption .event-meta { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+.photo-caption .event-arrow { color: #C3DB66; font-size: 18px; font-weight: 700; }
+
+/* SPONSOR STRIP */
+.sponsor-strip {
+  padding: 24px 48px;
+  background: #f9f9f8;
+  display: flex; align-items: center; gap: 40px;
+  border-top: 1px solid #eeeeee; border-bottom: 1px solid #eeeeee;
+}
+.strip-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #ccc; font-family: 'Poppins', sans-serif; white-space: nowrap; }
+.strip-logos { display: flex; gap: 24px; align-items: center; flex: 1; }
+.strip-logo { height: 28px; background: #e8e8e6; border-radius: 4px; flex: 1; max-width: 100px; }
+
+/* COMMUNITY SECTION — editorial grid */
+.community { padding: 72px 48px; }
+.community-grid {
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  gap: 16px;
+  margin-top: 36px;
+}
+.community-feature {
+  background: #006A45; border-radius: 20px; padding: 48px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 380px;
+}
+.cf-top {}
+.cf-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(195,219,102,0.8); margin-bottom: 16px; font-family: 'Poppins', sans-serif; }
+.cf-quote { font-family: 'Poppins', sans-serif; font-size: 26px; font-weight: 700; line-height: 1.3; color: white; letter-spacing: -0.5px; }
+.cf-quote .highlight { color: #C3DB66; }
+.cf-bottom {}
+.cf-author { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 32px; }
+.cf-author strong { color: white; display: block; margin-bottom: 2px; font-size: 14px; }
+
+.community-side { display: flex; flex-direction: column; gap: 16px; }
+.side-card { border-radius: 16px; padding: 28px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.sc-lime { background: #C3DB66; }
+.sc-dark { background: #111; }
+.side-card .sc-icon { font-size: 28px; margin-bottom: 12px; }
+.side-card .sc-title { font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 800; line-height: 1.2; }
+.sc-lime .sc-title { color: #003d22; }
+.sc-dark .sc-title { color: white; }
+.side-card .sc-sub { font-size: 12px; margin-top: 6px; }
+.sc-lime .sc-sub { color: rgba(0,60,30,0.6); }
+.sc-dark .sc-sub { color: rgba(255,255,255,0.5); }
+.side-card .sc-arrow { font-size: 20px; margin-top: 16px; }
+.sc-lime .sc-arrow { color: #006A45; }
+.sc-dark .sc-arrow { color: #C3DB66; }
+
+/* UPCOMING */
+.upcoming { padding: 0 48px 72px; }
+.upcoming-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; }
+.upcoming h2 { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -1px; }
+.upcoming-link { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700; color: #00AD5A; }
+.event-list { display: flex; flex-direction: column; gap: 2px; }
+.event-row {
+  display: grid; grid-template-columns: 80px 1fr auto;
+  gap: 24px; align-items: center;
+  padding: 22px 28px; background: #f9f9f8; border-radius: 12px;
+  transition: background 0.15s;
+}
+.event-row:hover { background: #f0f0ee; }
+.er-date { font-family: 'Poppins', sans-serif; text-align: center; }
+.er-month { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #00AD5A; }
+.er-day { font-size: 28px; font-weight: 900; color: #111; line-height: 1; }
+.er-info {}
+.er-type { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; font-family: 'Poppins', sans-serif; margin-bottom: 4px; }
+.er-name { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; }
+.er-desc { font-size: 12px; color: #666; margin-top: 3px; }
+.er-cta { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700; color: #F26447; white-space: nowrap; }
+
+/* BIG CTA SECTION */
+.big-cta {
+  margin: 0 48px 72px;
+  background: #111; border-radius: 24px;
+  padding: 60px 56px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 40px; align-items: center;
+}
+.bc-left h2 { font-family: 'Poppins', sans-serif; font-size: 44px; font-weight: 900; letter-spacing: -2px; color: white; line-height: 1.0; }
+.bc-left h2 em { color: #C3DB66; font-style: normal; }
+.bc-left p { font-size: 15px; color: rgba(255,255,255,0.5); margin-top: 14px; max-width: 380px; line-height: 1.6; }
+.bc-right { display: flex; flex-direction: column; gap: 12px; min-width: 220px; }
+.big-cta-btn { padding: 16px 28px; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; text-align: center; }
+.bcb-green { background: #00AD5A; color: white; }
+.bcb-outline { border: 1.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); }
+
+/* FOOTER */
+footer { background: #f5f5f3; padding: 48px; border-top: 1px solid #e8e8e8; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
+.f-logo { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 900; color: #111; margin-bottom: 10px; }
+.f-logo em { color: #00AD5A; font-style: normal; }
+.f-tagline { font-size: 12px; color: #888; line-height: 1.6; margin-bottom: 20px; max-width: 260px; }
+.f-newsletter { display: flex; gap: 8px; }
+.f-input { flex: 1; background: white; border: 1px solid #ddd; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #111; }
+.f-submit { background: #F26447; color: white; padding: 10px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; font-family: 'Poppins', sans-serif; border: none; }
+.f-col h4 { font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #bbb; margin-bottom: 14px; }
+.f-col a { display: block; font-size: 13px; color: #666; margin-bottom: 10px; text-decoration: none; }
+.footer-bottom { border-top: 1px solid #e8e8e8; padding-top: 20px; display: flex; justify-content: space-between; }
+.footer-bottom p { font-size: 11px; color: #aaa; }
+</style>
+</head>
+<body>
+
+<div class="page-banner">OPTION 3 — Typography-Led Hero + Editorial Layout + Event List</div>
+
+<nav>
+  <div class="logo">Naturally <em>San Diego</em></div>
+  <div class="nav-links">
+    <a href="#">About</a>
+    <a href="#">Programs</a>
+    <a href="#">Community</a>
+    <a href="#">Resources</a>
+  </div>
+  <div class="nav-right">
+    <span class="n-btn n-btn-ghost">Member Portal</span>
+    <span class="n-btn n-btn-fill">Join Now</span>
+  </div>
+</nav>
+
+<!-- HERO — TYPE-LED -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">San Diego · Natural Products · CPG</div>
+    <div class="hero-mega">
+      <div>The community</div>
+      <div class="line2">your brand</div>
+      <div class="line3">needs.</div>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-bottom-left">
+        <p class="hero-desc">Events, education, and the connections that actually move your natural products brand forward. San Diego's CPG community, right here.</p>
+        <div class="hero-ctas">
+          <span class="cta-primary">Join Naturally SD</span>
+          <span class="cta-secondary">Upcoming Events</span>
+        </div>
+      </div>
+      <div class="hero-photo-block">
+        <div class="photo-icon">📸</div>
+        <div class="photo-text">Community photography</div>
+        <div class="photo-caption">
+          <div>
+            <div class="event-name">Naturally Rising 2025</div>
+            <div class="event-meta">Pitch Competition · April 10</div>
+          </div>
+          <div class="event-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSOR STRIP -->
+<div class="sponsor-strip">
+  <div class="strip-label">Sponsors</div>
+  <div class="strip-logos">
+    <div class="strip-logo"></div>
+    <div class="strip-logo"></div>
+    <div class="strip-logo"></div>
+    <div class="strip-logo"></div>
+    <div class="strip-logo"></div>
+    <div class="strip-logo"></div>
+  </div>
+</div>
+
+<!-- COMMUNITY EDITORIAL -->
+<section class="community">
+  <div class="section-eyebrow" style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#00AD5A;">Community</div>
+  <div style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:800;letter-spacing:-1px;margin-top:10px;">Real people. Real results.</div>
+  <div class="community-grid">
+    <div class="community-feature">
+      <div class="cf-top">
+        <div class="cf-label">Member Spotlight</div>
+        <div class="cf-quote">"Met my co-packer, my first investor, and my best customer all through <span class="highlight">Naturally SD.</span>"</div>
+      </div>
+      <div class="cf-bottom">
+        <div class="cf-author">
+          <strong>Sarah M.</strong>
+          Founder, [Brand Name] · NSD Member since 2022
+        </div>
+      </div>
+    </div>
+    <div class="community-side">
+      <div class="side-card sc-lime">
+        <div>
+          <div class="sc-icon">🏆</div>
+          <div class="sc-title">Naturally Rising Pitch Competition</div>
+          <div class="sc-sub">Our flagship event for emerging brands.</div>
+        </div>
+        <div class="sc-arrow">→</div>
+      </div>
+      <div class="side-card sc-dark">
+        <div>
+          <div class="sc-icon">💬</div>
+          <div class="sc-title">Join our Slack Community</div>
+          <div class="sc-sub">The conversation that never stops.</div>
+        </div>
+        <div class="sc-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING EVENTS — LIST STYLE -->
+<section class="upcoming">
+  <div class="upcoming-header">
+    <div>
+      <div style="font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#00AD5A;margin-bottom:8px;">What's Coming Up</div>
+      <h2>Don't miss these.</h2>
+    </div>
+    <div class="upcoming-link">Full Calendar →</div>
+  </div>
+  <div class="event-list">
+    <div class="event-row">
+      <div class="er-date"><div class="er-month">APR</div><div class="er-day">10</div></div>
+      <div class="er-info">
+        <div class="er-type">Signature Event</div>
+        <div class="er-name">Naturally Rising Pitch Competition</div>
+        <div class="er-desc">Emerging brands pitch to industry judges. Our biggest event of the year.</div>
+      </div>
+      <div class="er-cta">Register →</div>
+    </div>
+    <div class="event-row">
+      <div class="er-date"><div class="er-month">MAR</div><div class="er-day">28</div></div>
+      <div class="er-info">
+        <div class="er-type">Monthly Meetup</div>
+        <div class="er-name">Coffee & Convos</div>
+        <div class="er-desc">Casual morning. Bring your questions and your business cards.</div>
+      </div>
+      <div class="er-cta">RSVP →</div>
+    </div>
+    <div class="event-row">
+      <div class="er-date"><div class="er-month">MAY</div><div class="er-day">05</div></div>
+      <div class="er-info">
+        <div class="er-type">Behind the Scenes</div>
+        <div class="er-name">Facility Tour</div>
+        <div class="er-desc">Get inside one of SD's leading natural products facilities.</div>
+      </div>
+      <div class="er-cta">Learn More →</div>
+    </div>
+  </div>
+</section>
+
+<!-- BIG CTA -->
+<div class="big-cta">
+  <div class="bc-left">
+    <h2>Ready to find<br>your <em>people?</em></h2>
+    <p>Join the community that's been building San Diego's natural products scene for over a decade.</p>
+  </div>
+  <div class="bc-right">
+    <div class="big-cta-btn bcb-green">Become a Member</div>
+    <div class="big-cta-btn bcb-outline">Become a Sponsor</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="f-logo">Naturally <em>San Diego</em></div>
+      <div class="f-tagline">San Diego's home for natural products and CPG founders. Part of the Naturally Network.</div>
+      <div class="f-newsletter">
+        <input class="f-input" placeholder="Your email address" />
+        <button class="f-submit">Subscribe</button>
+      </div>
+    </div>
+    <div class="f-col">
+      <h4>Navigate</h4>
+      <a href="#">About</a>
+      <a href="#">Programs</a>
+      <a href="#">Community</a>
+      <a href="#">Resources</a>
+    </div>
+    <div class="f-col">
+      <h4>Community</h4>
+      <a href="#">Be a Member</a>
+      <a href="#">Be a Sponsor</a>
+      <a href="#">Job Board</a>
+      <a href="#">Slack</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Naturally San Diego · 3780 Governor Drive, San Diego, CA 92122</p>
+    <p>Privacy · Terms · Contact</p>
+  </div>
+</footer>
+
+</body>
+</html>

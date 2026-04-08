@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SponsorStrip from '../components/SponsorStrip.astro';
+import CTASection from '../components/CTASection.astro';
+import EventCard from '../components/EventCard.astro';
+import ProgramsGrid from '../components/ProgramsGrid.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+---
+
+<Layout title="Naturally San Diego — San Diego's Natural Products Community">
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden" style="min-height: min(90vh, 760px);">
+    <img
+      src="/events/PitchSlam2023-133-resize-1280-wide-1030x686.jpg"
+      alt="Naturally Rising pitch competition — 350-person audience at a San Diego natural products event"
+      class="absolute inset-0 w-full h-full object-cover"
+      style="object-position: center 30%;"
+    />
+    <!-- Strong dark-left gradient so text pops on any screen -->
+    <div class="absolute inset-0" style="background: linear-gradient(105deg, rgba(0,28,15,0.95) 0%, rgba(0,60,35,0.75) 45%, rgba(0,80,45,0.15) 100%);"></div>
+    <!-- Lime glow accent top-right -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 80% 20%, rgba(195,219,102,0.12), transparent 55%);"></div>
+
+    <!-- Content — vertically centered with bottom bias -->
+    <div class="relative z-10 h-full flex flex-col justify-end px-6 lg:px-16 pb-16 lg:pb-20" style="min-height: inherit;">
+      <div class="max-w-3xl">
+        <!-- Eyebrow -->
+        <div class="flex items-center gap-3 mb-5">
+          <div class="h-px w-8 bg-[#C3DB66]"></div>
+          <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#C3DB66]" style="font-family: 'Poppins', sans-serif;">
+            San Diego · Natural Products · CPG
+          </span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[1.0] tracking-tight mb-6" style="font-family: 'Poppins', sans-serif;">
+          San Diego's<br class="hidden sm:block" /><em class="text-[#C3DB66] not-italic">natural products</em><br class="hidden sm:block" /> community.
+        </h1>
+
+        <!-- Subhead -->
+        <p class="text-base lg:text-lg text-white/65 mb-10 leading-relaxed max-w-xl" style="font-family: 'Lato', sans-serif;">
+          The people, events, and connections behind San Diego's growing natural products scene.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="https://app.glueup.com/org/naturallysandiego/memberships/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-[#F26447] hover:bg-orange-500 text-white font-bold text-sm px-7 py-3.5 rounded-full transition-all hover:shadow-lg hover:shadow-orange-500/30"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            Become a Member
+          </a>
+          <a
+            href="/programs/event-calendar"
+            class="border border-white/40 hover:border-white hover:bg-white/10 text-white font-bold text-sm px-7 py-3.5 rounded-full transition-all"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            See Upcoming Events →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom fade into white -->
+    <div class="absolute bottom-0 left-0 right-0 h-16 pointer-events-none" style="background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.08));"></div>
+  </section>
+
+  <!-- Sponsor Strip -->
+  <SponsorStrip />
+
+  <!-- Mission Block -->
+  <section class="py-20 px-6 lg:px-10">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-2xl lg:text-3xl font-semibold text-[#111] leading-relaxed" style="font-family: 'Lato', sans-serif; letter-spacing: -0.01em;">
+        San Diego has the brands, the talent, and the energy. We're the community pulling it all together. Five years and counting.
+      </p>
+      <div class="mt-10 flex items-center justify-center gap-6">
+        <div class="h-px w-12 bg-gray-200"></div>
+        <a
+          href="https://directories.onepercentfortheplanet.org/profile/naturally-san-diego"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="/badges/1ftp_NonprofitPartner_Horizontal_Black-scaled.png"
+            alt="1% for the Planet Nonprofit Partner"
+            class="h-14 w-auto opacity-40 hover:opacity-70 transition-opacity"
+            loading="lazy"
+          />
+        </a>
+        <div class="h-px w-12 bg-gray-200"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section class="py-4 pb-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-end justify-between gap-4 mb-8">
+      <SectionHeader eyebrow="What's Coming Up" headline="Events worth showing up for." align="left" />
+      <a
+        href="/programs/event-calendar"
+        class="arrow-link text-sm font-bold text-[#00AD5A] hover:text-[#006A45] whitespace-nowrap flex-shrink-0 mb-0.5"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Full Calendar <span>→</span>
+      </a>
+    </div>
+    <div class="flex gap-5 overflow-x-auto pt-3 pb-4 px-6 lg:px-10 snap-x snap-mandatory lg:justify-center" style="scrollbar-width: none; -ms-overflow-style: none;">
+      <EventCard
+        color="green"
+        type="Signature Event"
+        title="Naturally Rising"
+        date="Spring"
+        description="35+ applicants. 6 finalists. One stage. $500K+ awarded."
+        href="/programs/naturally-rising"
+      />
+      <EventCard
+        color="teal"
+        type="Monthly Meetup"
+        title="Coffee & Convos"
+        date="Monthly"
+        description="No agenda. Just the people you've been meaning to meet."
+        href="/programs/monthly-events"
+      />
+      <EventCard
+        color="lime"
+        type="Behind the Scenes"
+        title="Facility Tour"
+        date="Quarterly"
+        description="Get inside some of SD's most interesting operations."
+        href="/programs/monthly-events"
+      />
+      <EventCard
+        color="green"
+        type="Annual Event"
+        title="Fall Fling"
+        date="Fall"
+        description="Our biggest community celebration of the year."
+        href="/programs/monthly-events"
+      />
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTASection
+    headline="Your co-packer. Your investor. Your next customer."
+    body="They're all in this community. We've been building since 2020. Come find your people."
+    cta1Label="Become a Member"
+    cta1Href="https://app.glueup.com/org/naturallysandiego/memberships/"
+    cta1External={true}
+    cta2Label="Become a Sponsor"
+    cta2Href="/community/sponsorship"
+  />
+
+  <!-- Programs Grid -->
+  <section class="bg-[#f7f7f5] py-20 px-6 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+        <SectionHeader eyebrow="Programs" headline="Everything you need to grow your brand." align="left" />
+      </div>
+      <ProgramsGrid />
+    </div>
+  </section>
+
+</Layout>

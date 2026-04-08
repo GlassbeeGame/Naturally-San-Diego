@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+---
+
+<Layout title="Slack Community — Naturally San Diego">
+
+  <PageHero
+    eyebrow="Resources"
+    title="The conversation that never stops."
+    bgColor="#00B2AD"
+  />
+
+  <section class="py-16 px-6 lg:px-10">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-lg text-[#111]/70 leading-relaxed mb-10" style="font-family: 'Lato', sans-serif;">
+        As a member, you're in. The Naturally San Diego Slack is where the community actually lives between events. Questions, recommendations, wins, opportunities, and the occasional off-topic thread that somehow becomes the most useful conversation of the week.
+      </p>
+
+      <!-- Topic pills -->
+      <div class="flex flex-wrap gap-3 justify-center mb-12">
+        {['Retail Strategy', 'Fundraising', 'Co-manufacturers', 'Member Wins', 'Events', 'Job Openings', 'Ask the Room'].map(topic => (
+          <span
+            class="bg-[#f9f9f8] border border-gray-200 rounded-full px-4 py-2 text-sm font-semibold text-[#111]"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            {topic}
+          </span>
+        ))}
+      </div>
+
+      <!-- 🔴 NEEDS CLIENT INPUT: Slack join link -->
+      <a
+        href="/community/membership"
+        class="inline-block bg-[#F26447] hover:bg-orange-600 text-white font-bold text-sm px-8 py-3.5 rounded-full transition-colors"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        Become a Member to Get Access →
+      </a>
+      <p class="text-xs text-[#111]/40 mt-4" style="font-family: 'Lato', sans-serif;">
+        Already a member? Check your email for your Slack invite or contact info@naturallysandiego.org.
+      </p>
+    </div>
+  </section>
+
+</Layout>

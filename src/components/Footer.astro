@@ -1,0 +1,246 @@
+---
+const aboutLinks = [
+  { label: 'Our Story', href: '/about/our-story' },
+  { label: 'Leadership', href: '/about/leadership' },
+  { label: 'Our Sponsors', href: '/about/sponsors' },
+  { label: 'Press', href: '/about/press' },
+  { label: 'Contact Us', href: '/about/contact' },
+];
+
+const programLinks = [
+  { label: 'Naturally Rising', href: '/programs/naturally-rising' },
+  { label: 'Monthly Events', href: '/programs/monthly-events' },
+  { label: 'Event Calendar', href: '/programs/event-calendar' },
+  { label: 'Forums', href: '/programs/forums' },
+];
+
+const communityLinks = [
+  { label: 'Membership', href: '/community/membership' },
+  { label: 'Sponsorship', href: '/community/sponsorship' },
+];
+
+const resourceLinks = [
+  { label: 'Job Board', href: 'https://jobs.naturallynetwork.org', external: true },
+  { label: 'CPG Academy', href: '/resources/cpg-academy' },
+  { label: 'Member Wins', href: '/resources/member-wins' },
+  { label: 'Slack Community', href: '/resources/slack' },
+  { label: 'Submit News', href: '/resources/submit' },
+];
+
+const socialLinks = [
+  { label: 'Instagram', href: 'https://www.instagram.com/naturallysandiego/', icon: 'instagram' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/naturally-san-diego/', icon: 'linkedin' },
+  { label: 'Facebook', href: 'https://www.facebook.com/naturallysd/', icon: 'facebook' },
+  { label: 'YouTube', href: 'https://www.youtube.com/channel/UCklan8svmwNCOf7MQ55qG5A', icon: 'youtube' },
+];
+---
+
+<footer class="bg-[#111] text-white">
+
+  <!-- Newsletter bar -->
+  <div class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <p class="font-bold text-base" style="font-family: 'Poppins', sans-serif;">Stay in the loop.</p>
+        <p class="text-sm text-white/50 mt-1">Events, member wins, and what's happening in SD natural products.</p>
+      </div>
+
+      <!-- Form (shown by default) -->
+      <form id="footer-nl-form" class="flex gap-3 w-full md:w-auto" action="#" method="post" style="transition: opacity 0.3s ease;">
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          required
+          class="flex-1 md:w-72 bg-white/8 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/30"
+        />
+        <button
+          type="submit"
+          class="bg-[#F26447] hover:bg-orange-600 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors flex-shrink-0"
+          style="font-family: 'Poppins', sans-serif;"
+        >
+          Subscribe
+        </button>
+      </form>
+
+      <!-- Success state (hidden by default) -->
+      <div
+        id="footer-nl-success"
+        class="flex items-center gap-4 w-full md:w-auto"
+        style="display: none; opacity: 0; transition: opacity 0.4s ease;"
+        aria-live="polite"
+      >
+        <!-- Animated checkmark -->
+        <div
+          class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
+          style="background: rgba(0,173,90,0.15);"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path
+              d="M4 10.5l4.5 4.5 7.5-9"
+              stroke="#00AD5A"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-dasharray="18"
+              stroke-dashoffset="18"
+              id="footer-check-path"
+              style="transition: stroke-dashoffset 0.45s cubic-bezier(0.4,0,0.2,1) 0.1s;"
+            />
+          </svg>
+        </div>
+        <div>
+          <p class="font-bold text-sm text-white" style="font-family: 'Poppins', sans-serif;">
+            You're in!
+          </p>
+          <p class="text-xs text-white/50 mt-0.5" style="font-family: 'Lato', sans-serif;">
+            Check your inbox for the good stuff.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const footerForm = document.getElementById('footer-nl-form') as HTMLFormElement | null;
+    const footerSuccess = document.getElementById('footer-nl-success') as HTMLElement | null;
+
+    footerForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // If a real Formspree endpoint is set, submit via fetch
+      const action = footerForm.action;
+      if (action && !action.endsWith('#') && !action.endsWith('/')) {
+        try {
+          const data = new FormData(footerForm);
+          await fetch(action, {
+            method: 'POST',
+            body: data,
+            headers: { Accept: 'application/json' },
+          });
+        } catch (_) {
+          // fail silently — still show success UX
+        }
+      }
+
+      // Mark as subscribed so popup never shows
+      localStorage.setItem('nsd_nl_subscribed', '1');
+
+      // Fade out form → fade in success
+      footerForm.style.opacity = '0';
+      setTimeout(() => {
+        footerForm.style.display = 'none';
+        if (footerSuccess) {
+          footerSuccess.style.display = 'flex';
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              footerSuccess.style.opacity = '1';
+              const checkPath = document.getElementById('footer-check-path') as SVGPathElement | null;
+              if (checkPath) checkPath.style.strokeDashoffset = '0';
+            });
+          });
+        }
+      }, 300);
+    });
+  </script>
+
+  <!-- Nav columns -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-12">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+
+      <!-- Logo + tagline -->
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" class="flex items-center gap-2 mb-4">
+          <img src="/NN_Icon.png" alt="" aria-hidden="true" class="h-9 w-9 rounded-full" />
+          <span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.9rem; line-height: 1.1; letter-spacing: -0.01em; color: #fff;">
+            Naturally<br/><span style="color: rgba(255,255,255,0.6); font-weight: 600;">San Diego</span>
+          </span>
+        </a>
+        <p class="text-xs text-white/55 leading-relaxed">San Diego's home for natural products founders since 2020.</p>
+        <div class="flex gap-4 mt-5">
+          {socialLinks.map(s => (
+            <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} class="text-white/55 hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                {s.icon === 'instagram' && <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>}
+                {s.icon === 'linkedin' && <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>}
+                {s.icon === 'facebook' && <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>}
+                {s.icon === 'youtube' && <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>}
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- About -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-white/55 mb-4" style="font-family: 'Poppins', sans-serif;">About</h4>
+        <ul class="space-y-2.5">
+          {aboutLinks.map(l => (
+            <li><a href={l.href} class="text-sm text-white/60 hover:text-white transition-colors">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Programs -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-white/55 mb-4" style="font-family: 'Poppins', sans-serif;">Programs</h4>
+        <ul class="space-y-2.5">
+          {programLinks.map(l => (
+            <li><a href={l.href} class="text-sm text-white/60 hover:text-white transition-colors">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Community -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-white/55 mb-4" style="font-family: 'Poppins', sans-serif;">Community</h4>
+        <ul class="space-y-2.5">
+          {communityLinks.map(l => (
+            <li><a href={l.href} class="text-sm text-white/60 hover:text-white transition-colors">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-white/55 mb-4" style="font-family: 'Poppins', sans-serif;">Resources</h4>
+        <ul class="space-y-2.5">
+          {resourceLinks.map(l => (
+            <li>
+              <a
+                href={l.href}
+                class="text-sm text-white/60 hover:text-white transition-colors"
+                {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex flex-col sm:flex-row items-center gap-1">
+        <p class="text-xs text-white/50">© 2020 Naturally San Diego. All Rights Reserved.</p>
+        <span class="text-white/20 hidden sm:block">·</span>
+        <a href="https://glassbee.co" target="_blank" rel="noopener noreferrer" class="text-xs text-white/25 hover:text-white/50 transition-colors" style="font-family: 'Lato', sans-serif;">Designed by Glassbee</a>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://directories.onepercentfortheplanet.org/profile/naturally-san-diego" target="_blank" rel="noopener noreferrer">
+          <img src="/badges/1ftp_NonprofitPartner_Horizontal_Black-scaled.png" alt="1% for the Planet Nonprofit Partner" class="h-6 w-auto opacity-50 hover:opacity-80 transition-opacity" style="filter: invert(1);" />
+        </a>
+        <div class="flex gap-4 text-xs text-white/50">
+          <a href="/privacy" class="hover:text-white/60 transition-colors">Privacy Policy</a>
+          <a href="/terms" class="hover:text-white/60 transition-colors">Terms</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>

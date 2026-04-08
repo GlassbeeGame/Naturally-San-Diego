@@ -1,0 +1,85 @@
+---
+interface Field {
+  name: string;
+  label: string;
+  type: 'text' | 'email' | 'tel' | 'textarea' | 'select';
+  required?: boolean;
+  options?: string[];
+  placeholder?: string;
+}
+
+interface Props {
+  action: string; // Formspree endpoint URL — TODO: replace placeholder with real endpoint
+  fields: Field[];
+  submitLabel?: string;
+}
+
+const { action, fields, submitLabel = 'Send Message' } = Astro.props;
+---
+
+<!-- TODO: add Formspree endpoint — create account at formspree.io and replace action="" -->
+<form
+  action={action || '#'}
+  method="POST"
+  class="space-y-5"
+>
+  <!-- Formspree redirect -->
+  <input type="hidden" name="_next" value="/thank-you" />
+  <!-- Honeypot spam prevention -->
+  <input type="text" name="_gotcha" style="display:none" />
+
+  {fields.map(field => (
+    <div>
+      <label
+        for={field.name}
+        class="block text-sm font-semibold text-[#111] mb-1.5"
+        style="font-family: 'Poppins', sans-serif;"
+      >
+        {field.label}{field.required && <span class="text-[#F26447] ml-0.5">*</span>}
+      </label>
+
+      {field.type === 'textarea' ? (
+        <textarea
+          id={field.name}
+          name={field.name}
+          required={field.required}
+          placeholder={field.placeholder}
+          rows={5}
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#111] placeholder:text-gray-400 focus:outline-none focus:border-[#00AD5A] transition-colors resize-none"
+          style="font-family: 'Lato', sans-serif;"
+        ></textarea>
+      ) : field.type === 'select' ? (
+        <select
+          id={field.name}
+          name={field.name}
+          required={field.required}
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#111] focus:outline-none focus:border-[#00AD5A] transition-colors bg-white"
+          style="font-family: 'Lato', sans-serif;"
+        >
+          <option value="">Select an option</option>
+          {field.options?.map(opt => (
+            <option value={opt}>{opt}</option>
+          ))}
+        </select>
+      ) : (
+        <input
+          type={field.type}
+          id={field.name}
+          name={field.name}
+          required={field.required}
+          placeholder={field.placeholder}
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#111] placeholder:text-gray-400 focus:outline-none focus:border-[#00AD5A] transition-colors"
+          style="font-family: 'Lato', sans-serif;"
+        />
+      )}
+    </div>
+  ))}
+
+  <button
+    type="submit"
+    class="bg-[#F26447] hover:bg-orange-600 text-white font-bold text-sm px-8 py-3.5 rounded-full transition-colors"
+    style="font-family: 'Poppins', sans-serif;"
+  >
+    {submitLabel}
+  </button>
+</form>

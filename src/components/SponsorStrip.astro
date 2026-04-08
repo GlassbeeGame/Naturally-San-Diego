@@ -1,0 +1,44 @@
+---
+const sponsors = [
+  { name: 'Bank of America', file: 'b-of-a-square-for-web.png' },
+  { name: 'Perfect Snacks', file: 'perfect-snacks-500-x-500.png' },
+  { name: 'Procopio', file: 'procopio-500-x-500-300x300.png' },
+  { name: "Dr. Bronner's", file: 'bronners-500-x-500-300x300.png' },
+  { name: 'The Coconut Cult', file: 'coconut-cult-new-500-x-500-300x300.png' },
+  { name: 'Marsh McLennan', file: 'marsh-500-x-500-300x300.png' },
+  { name: 'Cambridge SPG', file: 'Cambridge_SPG_stacked-300-x-300.png' },
+  { name: 'Luminize Marketing', file: 'luminize-updated-500-x-500-300x300.png' },
+  { name: 'Kalon Executive Search', file: 'kalon-exec-search-500-x-500-300x300.png' },
+];
+---
+
+<section class="bg-white py-10 border-b border-gray-100 relative overflow-hidden">
+  <!-- Edge fades for scroll hint -->
+  <div class="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style="background: linear-gradient(to right, white, transparent);"></div>
+  <div class="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style="background: linear-gradient(to left, white, transparent);"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <p
+      class="text-xs font-bold uppercase tracking-[0.2em] text-gray-300 mb-7 text-center"
+      style="font-family: 'Poppins', sans-serif;"
+    >
+      Our Sponsors
+    </p>
+    <div class="flex items-center gap-10 overflow-x-auto pb-2 justify-start lg:justify-center" style="scrollbar-width: none; -ms-overflow-style: none;">
+      {sponsors.map(s => (
+        <a
+          href="/about/sponsors"
+          class="flex-shrink-0 opacity-50 hover:opacity-90 transition-opacity duration-300"
+          title={s.name}
+        >
+          <img
+            src={`/sponsors/${s.file}`}
+            alt={s.name}
+            class="h-16 w-auto max-w-[160px] object-contain grayscale"
+            loading="lazy"
+          />
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

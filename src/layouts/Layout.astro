@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import NewsletterPopup from '../components/NewsletterPopup.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Naturally San Diego',
+  description = "San Diego's home for natural products and CPG founders. Events, education, community, and the connections that actually move your brand forward."
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://naturallysandiego.org');
+const ogImage = 'https://naturallysandiego.org/events/PitchSlam2023-133-resize-1280-wide-1030x686.jpg';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Naturally San Diego",
+  "url": "https://naturallysandiego.org",
+  "logo": "https://naturallysandiego.org/NN_Icon.png",
+  "description": description,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3780 Governor Drive",
+    "addressLocality": "San Diego",
+    "addressRegion": "CA",
+    "postalCode": "92122",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://www.instagram.com/naturallysandiego/",
+    "https://www.linkedin.com/company/naturally-san-diego/",
+    "https://www.facebook.com/naturallysd/",
+    "https://www.youtube.com/channel/UCklan8svmwNCOf7MQ55qG5A"
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Naturally San Diego" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1030" />
+    <meta property="og:image:height" content="686" />
+    <meta property="og:image:alt" content="Naturally San Diego community at Naturally Rising" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&family=Roboto+Condensed:wght@700&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GlueUp widgets script — loaded once globally -->
+    <script src="https://app.glueup.com/compiled/js/eb-widgets.min.js" type="text/javascript" defer></script>
+  </head>
+  <body class="bg-white">
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <NewsletterPopup />
+  </body>
+</html>

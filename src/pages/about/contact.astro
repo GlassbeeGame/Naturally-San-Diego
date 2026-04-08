@@ -1,0 +1,144 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import FormspreeForm from '../../components/FormspreeForm.astro';
+
+const contactFields = [
+  { name: 'name', label: 'Your Name', type: 'text' as const, required: true, placeholder: 'Jane Smith' },
+  { name: 'email', label: 'Email Address', type: 'email' as const, required: true, placeholder: 'jane@yourbrand.com' },
+  { name: 'subject', label: 'Subject', type: 'text' as const, required: true, placeholder: 'How can we help?' },
+  { name: 'message', label: 'Message', type: 'textarea' as const, required: true, placeholder: 'Tell us what you have in mind...' },
+];
+
+const socials = [
+  { label: 'Instagram', href: 'https://www.instagram.com/naturallysandiego/' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/naturally-san-diego/' },
+  { label: 'Facebook', href: 'https://www.facebook.com/naturallysd/' },
+];
+---
+
+<Layout title="Contact Us — Naturally San Diego">
+
+  <PageHero
+    eyebrow="About"
+    title="Let's talk."
+    subtitle="Questions, partnerships, or just want to say hi? We're here."
+  />
+
+  <section class="py-16 lg:py-20 px-6 lg:px-10">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+
+      <!-- ── Left: Contact card ───────────────────────────── -->
+      <div class="bg-[#111] rounded-3xl p-8 lg:p-10 flex flex-col gap-8 relative overflow-hidden">
+
+        <!-- Subtle dot-grid texture -->
+        <div
+          class="absolute inset-0 opacity-[0.06]"
+          style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"
+          aria-hidden="true"
+        ></div>
+
+        <!-- Logo lockup -->
+        <div class="relative flex items-center gap-3">
+          <img src="/NN_Icon.png" alt="" aria-hidden="true" class="h-10 w-10 rounded-full" />
+          <span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1rem; color: #fff; line-height: 1.2;">
+            Naturally<br /><span style="color: rgba(255,255,255,0.55); font-weight: 600;">San Diego</span>
+          </span>
+        </div>
+
+        <!-- Divider -->
+        <div class="relative h-px bg-white/10"></div>
+
+        <!-- Contact blocks -->
+        <div class="relative flex flex-col gap-7">
+
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-[#C3DB66] mb-2" style="font-family: 'Poppins', sans-serif;">
+              Mailing Address
+            </p>
+            <p class="text-sm text-white/80 leading-relaxed" style="font-family: 'Lato', sans-serif;">
+              3780 Governor Drive<br />San Diego, CA 92122
+            </p>
+          </div>
+
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-[#C3DB66] mb-2" style="font-family: 'Poppins', sans-serif;">
+              General Inquiries
+            </p>
+            <a
+              href="mailto:info@naturallysandiego.org"
+              class="text-sm text-white hover:text-[#C3DB66] transition-colors"
+              style="font-family: 'Lato', sans-serif;"
+            >
+              info@naturallysandiego.org
+            </a>
+          </div>
+
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-[#C3DB66] mb-2" style="font-family: 'Poppins', sans-serif;">
+              Sponsorship
+            </p>
+            <a
+              href="mailto:renee@naturallysandiego.org"
+              class="text-sm text-white hover:text-[#C3DB66] transition-colors block"
+              style="font-family: 'Lato', sans-serif;"
+            >
+              renee@naturallysandiego.org
+            </a>
+            <p class="text-xs text-white/45 mt-1" style="font-family: 'Lato', sans-serif;">
+              Renee Solares, Executive Director
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Divider -->
+        <div class="relative h-px bg-white/10"></div>
+
+        <!-- Social links -->
+        <div class="relative">
+          <p class="text-xs font-bold uppercase tracking-widest text-[#C3DB66] mb-4" style="font-family: 'Poppins', sans-serif;">
+            Follow Along
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {socials.map(s => (
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-bold text-white border border-white/25 hover:border-[#C3DB66] hover:text-[#C3DB66] px-4 py-2 rounded-full transition-colors"
+                style="font-family: 'Poppins', sans-serif;"
+              >
+                {s.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── Right: Form card ─────────────────────────────── -->
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 lg:p-10">
+        <div class="mb-8">
+          <p class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-2" style="font-family: 'Poppins', sans-serif;">
+            Send a Message
+          </p>
+          <h2 class="text-2xl font-black text-[#111]" style="font-family: 'Poppins', sans-serif; letter-spacing: -0.02em;">
+            We'll get back to you.
+          </h2>
+          <p class="text-sm text-[#111]/55 mt-2" style="font-family: 'Lato', sans-serif;">
+            Typically within one business day.
+          </p>
+        </div>
+        <!-- TODO: add Formspree endpoint — create account at formspree.io -->
+        <FormspreeForm
+          action=""
+          fields={contactFields}
+          submitLabel="Send Message"
+        />
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSD — Layout Option 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; background: #f5f5f3; color: #111; }
+.page-banner {
+  background: #006A45; color: white; text-align: center;
+  font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 1px; padding: 8px;
+}
+.page-banner span { opacity: 0.6; margin: 0 12px; }
+
+/* NAV */
+nav {
+  background: white; padding: 18px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid #f0f0f0;
+}
+.logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 16px; letter-spacing: -0.5px; color: #111; }
+.logo em { color: #00AD5A; font-style: normal; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 13px; font-weight: 600; color: #333; font-family: 'Poppins', sans-serif; text-decoration: none; }
+.nav-right { display: flex; gap: 10px; align-items: center; }
+.pill { padding: 8px 18px; border-radius: 100px; font-size: 12px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; }
+.pill-ghost { border: 1.5px solid #ddd; color: #333; }
+.pill-orange { background: #F26447; color: white; border: none; }
+
+/* HERO — full bleed photo with overlay */
+.hero {
+  position: relative;
+  height: 560px;
+  background: #002d1a;
+  overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    135deg,
+    #003d22 0%,
+    #006A45 35%,
+    #00AD5A 65%,
+    #00B2AD 100%
+  );
+  opacity: 0.9;
+}
+/* Texture overlay */
+.hero-texture {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(ellipse at 70% 40%, rgba(195,219,102,0.15) 0%, transparent 60%);
+}
+.hero-photo-hint {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 55%;
+  background: rgba(0,0,0,0.1);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px;
+}
+.photo-hint-icon { font-size: 48px; opacity: 0.15; }
+.photo-hint-text { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 2px; text-transform: uppercase; font-family: 'Poppins', sans-serif; }
+
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 48px 52px;
+  max-width: 600px;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(195,219,102,0.15); border: 1px solid rgba(195,219,102,0.3);
+  border-radius: 100px; padding: 5px 14px;
+  font-size: 10px; font-weight: 700; color: #C3DB66;
+  font-family: 'Poppins', sans-serif; letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero-tag::before { content: '●'; font-size: 6px; color: #C3DB66; }
+.hero-h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 58px; font-weight: 900; line-height: 0.95;
+  color: white; letter-spacing: -2.5px; margin-bottom: 22px;
+}
+.hero-h1 .accent { color: #C3DB66; display: block; }
+.hero-p {
+  font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.7);
+  max-width: 420px; margin-bottom: 32px;
+}
+.hero-actions { display: flex; gap: 12px; align-items: center; }
+.btn-cta {
+  background: #F26447; color: white; padding: 14px 30px;
+  border-radius: 100px; font-size: 13px; font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+.btn-ghost {
+  color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 600;
+  font-family: 'Poppins', sans-serif; display: flex; align-items: center; gap: 6px;
+}
+.btn-ghost::after { content: '→'; }
+
+/* SPONSORS — right under hero */
+.sponsors {
+  background: white; padding: 28px 48px;
+  display: flex; align-items: center; gap: 32px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.sponsors-label {
+  font-size: 10px; font-weight: 700; color: #aaa;
+  letter-spacing: 2px; text-transform: uppercase;
+  font-family: 'Poppins', sans-serif; white-space: nowrap; flex-shrink: 0;
+}
+.sponsor-logos { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.sponsor-pill {
+  height: 32px; padding: 0 20px; background: #f5f5f3; border-radius: 6px;
+  display: flex; align-items: center;
+  font-size: 10px; color: #bbb; font-weight: 600; font-family: 'Poppins', sans-serif;
+}
+
+/* UPCOMING EVENTS — horizontal scroll cards */
+.events-section { padding: 52px 0 0; }
+.events-header { padding: 0 48px 28px; display: flex; justify-content: space-between; align-items: flex-end; }
+.section-eyebrow { font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #00AD5A; margin-bottom: 10px; }
+.section-h2 { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -1px; }
+.see-all { font-size: 13px; font-weight: 700; color: #006A45; font-family: 'Poppins', sans-serif; }
+
+.event-cards { display: flex; gap: 16px; padding: 0 48px 52px; overflow-x: auto; }
+.event-card {
+  flex-shrink: 0; width: 260px;
+  border-radius: 16px; overflow: hidden; background: white;
+  border: 1px solid #eee;
+}
+.event-card-top {
+  height: 140px; padding: 20px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.event-card-top.green { background: #006A45; }
+.event-card-top.lime { background: #C3DB66; }
+.event-card-top.teal { background: #00B2AD; }
+.event-card-top.orange { background: #F26447; }
+.event-date { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
+.event-date.dark { color: rgba(0,0,0,0.5); }
+.event-title { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 800; color: white; line-height: 1.2; }
+.event-title.dark { color: #111; }
+.event-card-body { padding: 18px 20px; }
+.event-type { font-size: 10px; font-weight: 700; color: #00AD5A; letter-spacing: 1.5px; text-transform: uppercase; font-family: 'Poppins', sans-serif; margin-bottom: 6px; }
+.event-desc { font-size: 12px; color: #666; line-height: 1.5; }
+.event-register { margin-top: 14px; font-size: 12px; font-weight: 700; color: #F26447; font-family: 'Poppins', sans-serif; }
+
+/* WHAT WE DO */
+.programs { padding: 52px 48px; background: white; }
+.programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 32px; background: #f0f0f0; border-radius: 16px; overflow: hidden; }
+.prog-item { background: white; padding: 32px 28px; }
+.prog-icon { font-size: 32px; margin-bottom: 16px; }
+.prog-title { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.prog-desc { font-size: 13px; color: #666; line-height: 1.6; }
+
+/* COMMUNITY QUOTE — big single pull quote */
+.quote-section { padding: 80px 48px; background: #111; }
+.big-quote {
+  font-family: 'Poppins', sans-serif; font-size: 36px; font-weight: 800;
+  line-height: 1.2; color: white; letter-spacing: -1px; max-width: 680px;
+  margin: 0 auto;
+}
+.big-quote .highlight { color: #C3DB66; }
+.quote-attr { margin-top: 28px; font-size: 13px; color: rgba(255,255,255,0.4); font-family: 'Poppins', sans-serif; }
+.quote-attr strong { color: rgba(255,255,255,0.7); }
+
+/* MEMBERSHIP CTA */
+.join-section {
+  padding: 72px 48px;
+  background: linear-gradient(135deg, #C3DB66 0%, #00AD5A 100%);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+}
+.join-left h2 { font-family: 'Poppins', sans-serif; font-size: 40px; font-weight: 900; line-height: 1.0; letter-spacing: -1.5px; color: #003d22; }
+.join-left p { font-size: 15px; color: rgba(0,40,20,0.65); margin-top: 14px; line-height: 1.6; }
+.join-right { display: flex; flex-direction: column; gap: 12px; }
+.join-btn { padding: 18px 28px; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+.join-btn-primary { background: #003d22; color: white; }
+.join-btn-secondary { background: rgba(0,0,0,0.1); color: #003d22; }
+.join-btn span { opacity: 0.5; }
+
+/* FOOTER */
+footer { background: #111; padding: 40px 48px 32px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.f-logo { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 900; color: white; margin-bottom: 10px; }
+.f-logo em { color: #00AD5A; font-style: normal; }
+.f-tagline { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6; margin-bottom: 20px; }
+.f-newsletter { display: flex; gap: 8px; }
+.f-input { flex: 1; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 14px; color: white; font-size: 12px; }
+.f-submit { background: #F26447; color: white; padding: 10px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; font-family: 'Poppins', sans-serif; border: none; }
+.f-col h4 { font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+.f-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 10px; text-decoration: none; }
+.footer-bottom { padding-top: 24px; display: flex; justify-content: space-between; }
+.footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.25); }
+</style>
+</head>
+<body>
+
+<div class="page-banner">OPTION 2 — Photo Hero + Event Cards + Big Pull Quote <span>·</span> Scroll to see full layout</div>
+
+<nav>
+  <div class="logo">Naturally <em>San Diego</em></div>
+  <div class="nav-links">
+    <a href="#">About</a>
+    <a href="#">Programs</a>
+    <a href="#">Community</a>
+    <a href="#">Resources</a>
+  </div>
+  <div class="nav-right">
+    <span class="pill pill-ghost">Member Portal</span>
+    <span class="pill pill-orange">Join Now</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-photo-hint">
+    <div class="photo-hint-icon">📸</div>
+    <div class="photo-hint-text">Community photography here</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">San Diego · Natural Products · CPG</div>
+    <h1 class="hero-h1">
+      Where great<br>
+      <span class="accent">brands begin.</span>
+    </h1>
+    <p class="hero-p">San Diego's home for natural products and CPG founders. Events, education, community, and the connections that actually move your brand forward.</p>
+    <div class="hero-actions">
+      <span class="btn-cta">Become a Member</span>
+      <span class="btn-ghost">See Upcoming Events</span>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORS STRIP -->
+<div class="sponsors">
+  <div class="sponsors-label">Our Sponsors</div>
+  <div class="sponsor-logos">
+    <div class="sponsor-pill">Sponsor Co.</div>
+    <div class="sponsor-pill">Brand Name</div>
+    <div class="sponsor-pill">Partner Inc.</div>
+    <div class="sponsor-pill">Company</div>
+    <div class="sponsor-pill">Sponsor Co.</div>
+    <div class="sponsor-pill">Brand Name</div>
+  </div>
+</div>
+
+<!-- UPCOMING EVENTS -->
+<div class="events-section">
+  <div class="events-header">
+    <div>
+      <div class="section-eyebrow">What's Coming Up</div>
+      <div class="section-h2">Events worth<br>showing up for.</div>
+    </div>
+    <div class="see-all">View Full Calendar →</div>
+  </div>
+  <div class="event-cards">
+    <div class="event-card">
+      <div class="event-card-top orange">
+        <div class="event-date">April 10, 2025</div>
+        <div class="event-title">Naturally Rising<br>Pitch Competition</div>
+      </div>
+      <div class="event-card-body">
+        <div class="event-type">Signature Event</div>
+        <div class="event-desc">Our flagship pitch competition. Emerging brands. Industry judges. Real opportunity.</div>
+        <div class="event-register">Register →</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-card-top green">
+        <div class="event-date">March 28, 2025</div>
+        <div class="event-title">Coffee &<br>Convos</div>
+      </div>
+      <div class="event-card-body">
+        <div class="event-type">Monthly Meetup</div>
+        <div class="event-desc">Casual community morning. Bring your questions, your business cards, and your coffee.</div>
+        <div class="event-register">RSVP →</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-card-top lime">
+        <div class="event-date">May 5, 2025</div>
+        <div class="event-title dark">Facility<br>Tour</div>
+      </div>
+      <div class="event-card-body">
+        <div class="event-type">Behind the Scenes</div>
+        <div class="event-desc">Get a behind-the-scenes look at one of SD's leading natural products facilities.</div>
+        <div class="event-register">Learn More →</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-card-top teal">
+        <div class="event-date">May 22, 2025</div>
+        <div class="event-title">Fall Fling<br>Save the Date</div>
+      </div>
+      <div class="event-card-body">
+        <div class="event-type">Annual Event</div>
+        <div class="event-desc">Our biggest community celebration of the year. Details dropping soon.</div>
+        <div class="event-register">Get Notified →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT WE DO -->
+<div class="programs">
+  <div class="section-eyebrow">Programs</div>
+  <div class="section-h2" style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:800;letter-spacing:-1px;">Everything you need<br>to grow your brand.</div>
+  <div class="programs-grid">
+    <div class="prog-item">
+      <div class="prog-icon">🏆</div>
+      <div class="prog-title">Pitch Competitions</div>
+      <div class="prog-desc">Compete, get feedback, and get in front of the people who can change your trajectory.</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-icon">🎓</div>
+      <div class="prog-title">CPG Academy</div>
+      <div class="prog-desc">Practical education for every stage of the founder journey, taught by people who've done it.</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-icon">☕</div>
+      <div class="prog-title">Monthly Events</div>
+      <div class="prog-desc">Coffee & Convos, facility tours, and community hangouts — showing up is the whole point.</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-icon">💼</div>
+      <div class="prog-title">Job Board</div>
+      <div class="prog-desc">Natural products jobs in San Diego. Whether you're hiring or looking, it's all here.</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-icon">💬</div>
+      <div class="prog-title">Slack Community</div>
+      <div class="prog-desc">The conversation never stops. Ask questions, share wins, find collaborators.</div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-icon">🌐</div>
+      <div class="prog-title">Naturally Network</div>
+      <div class="prog-desc">Part of a national community spanning NY, NorCal, Colorado, and beyond.</div>
+    </div>
+  </div>
+</div>
+
+<!-- BIG PULL QUOTE -->
+<div class="quote-section">
+  <p class="big-quote">"Met my co-packer, my first investor, and my best customer all through <span class="highlight">Naturally SD.</span>"</p>
+  <p class="quote-attr"><strong>Sarah M.</strong> · Founder, [Brand] · NSD Member</p>
+</div>
+
+<!-- JOIN CTA -->
+<div class="join-section">
+  <div class="join-left">
+    <h2>Ready to find your people?</h2>
+    <p>Join the community that's been building San Diego's natural products scene for over a decade.</p>
+  </div>
+  <div class="join-right">
+    <div class="join-btn join-btn-primary">Become a Member <span>→</span></div>
+    <div class="join-btn join-btn-secondary">Become a Sponsor <span>→</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="f-logo">Naturally <em>San Diego</em></div>
+      <div class="f-tagline">San Diego's home for natural products and CPG founders. Part of the Naturally Network.</div>
+      <div class="f-newsletter">
+        <input class="f-input" placeholder="Your email address" />
+        <button class="f-submit">Subscribe</button>
+      </div>
+    </div>
+    <div class="f-col">
+      <h4>Navigate</h4>
+      <a href="#">About</a>
+      <a href="#">Programs</a>
+      <a href="#">Community</a>
+      <a href="#">Resources</a>
+    </div>
+    <div class="f-col">
+      <h4>Community</h4>
+      <a href="#">Be a Member</a>
+      <a href="#">Be a Sponsor</a>
+      <a href="#">Job Board</a>
+      <a href="#">Slack</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Naturally San Diego · 3780 Governor Drive, San Diego, CA 92122</p>
+    <p>Privacy · Terms · Contact</p>
+  </div>
+</footer>
+
+</body>
+</html>
