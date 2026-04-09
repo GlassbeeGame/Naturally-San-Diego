@@ -28,16 +28,14 @@
 - **Our Story** — mission, history, how NSD fits within the Naturally Network
 - **Leadership** — Board of Directors + Executive Director (bios, headshots)
 - **Our Sponsors** — sponsor logos organized by tier
-- **Press** — media mentions, press releases
 - **Contact Us** — form that emails directly to client inbox
+- ~~**Press**~~ — **REMOVED** (decision: 2026-04-09, no active press to display)
 
 ### Programs
-- **Signature Events**
-  - Naturally Rising (pitch competition — include past winners like Naturally Colorado does)
-  - Fall Fling
-- **Forums** — page placeholder (program being developed)
-- **Monthly Events** — Coffee & Convos, Facility Tours, etc.
+- **Naturally Rising** — full page for annual pitch competition
+- **Monthly Events** — Coffee & Convos, Facility Tours, annual events (Naturally Rising + Fall Fling)
 - **Event Calendar** — GlueUp widget embed
+- ~~**Forums**~~ — **REMOVED** (301 redirect → Monthly Events; program not active)
 
 ### Community
 - **Membership**
@@ -52,11 +50,11 @@
   - Sponsor Inquiry (form that emails to client inbox)
 
 ### Resources
-- **Job Board** — links to Naturally Network job board
-- **CPG Academy** — educational resources
-- **Member Wins** — links to articles/media about members, social posts
-- **Submit News + Events** — form that emails to client inbox (could live under Member Wins)
+- **Job Board** — links to Naturally Network job board (via ForceBrands)
+- **Blog** — Member Wins & Stories (wins + founder story cards, labeled "Blog" in nav/footer)
+- **Submit News + Events** — form that emails to client inbox
 - **Slack Community** — link/info about joining the Slack
+- ~~**CPG Academy**~~ — **REMOVED** (301 redirect → Job Board; no program description exists)
 
 ---
 
@@ -90,4 +88,8 @@
 ## Notes
 - All GlueUp widget embed codes are available and ready to implement
 - Form handler TBD — options include Formspree, Astro native, or similar
-- Forums page is a placeholder — program is in development but page should exist
+- Forums page has been removed — 301 redirect to Monthly Events
+- CPG Academy page has been removed — 301 redirect to Job Board
+- Press page has been removed from nav and footer — page file still exists at /about/press but is not linked anywhere
+- Member Wins is now called "Blog" in nav and footer but the page title remains "Member Wins & Stories"
+- Do NOT re-add Forums, CPG Academy, or Press to nav/footer without explicit client direction

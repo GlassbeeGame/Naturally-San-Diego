@@ -239,17 +239,17 @@ Full details in `brand/brand-identity.md`. These are the essentials:
 | About > Our Story | **DONE** | Mission text, values, Naturally Network block, 1% for Planet |
 | About > Leadership | **DONE** | BoardGrid with all 20 board members + 1 staff (Nicole Strohbehn removed) |
 | About > Our Sponsors | **DONE** | SponsorGrid with all 6 tiers; unmapped logos as text chips |
-| About > Press | **DONE** | Placeholder with media inquiry email |
+| About > Press | **REMOVED FROM NAV** | Page file exists at /about/press but not linked anywhere in nav or footer — do not re-add |
 | About > Contact Us | **DONE** | Two-col: contact info + form; **🔴 Formspree endpoint needed** |
 | Programs > Naturally Rising | **DONE** | Full page — description, stats, timeline, photo gallery; **🔴 application link needed** |
-| Programs > Forums | **DONE** | Placeholder |
+| Programs > Forums | **REMOVED** | 301 redirect → /programs/monthly-events — do not re-add to nav |
 | Programs > Monthly Events | **DONE** | 5 event type cards + annual events grid (Naturally Rising + Fall Fling side-by-side, both #111 black) + GlueUp calendar CTA |
 | Programs > Event Calendar | **DONE** | GlueUp event list widget + "View All Events on GlueUp" banner CTA |
 | Community > Membership | **DONE** | Why Join, benefits, pricing, GlueUp widgets, FAQs |
-| Community > Sponsorship | **DONE** | Why sponsor, tier cards, inquiry form; **🔴 Formspree + PDF link needed** |
+| Community > Sponsorship | **DONE** | Rebuilt inquiry form as dark card + white form (matches Submit News pattern); **🔴 Formspree + PDF link needed** |
 | Resources > Job Board | **DONE** | ForceBrands description + account request link |
-| Resources > CPG Academy | **DONE** | Placeholder — **🔴 needs program description from client** |
-| Resources > Member Wins | **DONE** | Placeholder grid + submit link |
+| Resources > CPG Academy | **REMOVED** | 301 redirect → /resources/job-board — do not re-add to nav |
+| Resources > Blog (Member Wins & Stories) | **DONE** | Wins + founder story cards with colored bands and badges; placeholder notice for Renee |
 | Resources > Submit News + Events | **DONE** | Two-col layout: black context card + form card; **🔴 Formspree endpoint needed** |
 | Resources > Slack Community | **DONE** | Description + topic pills; **🔴 Slack invite link needed** |
 | Member Portal | **DONE** | Full-screen split layout — black brand panel left, white sign-in CTA right, redirects to GlueUp login |
@@ -263,8 +263,8 @@ Full details in `brand/brand-identity.md`. These are the essentials:
 | Task | Status | Notes |
 |------|--------|-------|
 | Astro project setup | **DONE** | v6.1.4 |
-| GitHub repo created | Not started | Next session |
-| Vercel deployment | Not started | After GitHub push |
+| GitHub repo created | **DONE** | GlassbeeGame/Naturally-San-Diego |
+| Vercel deployment | **PENDING** | Repo exists — needs Vercel connection |
 | Tailwind configured | **DONE** | v4 via @tailwindcss/vite, brand colors as @theme tokens |
 | Google Fonts loaded | **DONE** | Poppins, Roboto Condensed, Lato |
 | @astrojs/sitemap installed | **DONE** | Auto-generates sitemap.xml — 25 pages on last build |
@@ -287,6 +287,48 @@ Full details in `brand/brand-identity.md`. These are the essentials:
 ---
 
 ## Session Log
+
+### Session 2026-04-09 — Nav Cleanup, Sponsor Strip, Copy Polish, GitHub Push
+**What was built:**
+- **Newsletter + footer success states**: Animated SVG checkmark (circle draws, then checkmark strokes in) for both the popup and footer newsletter forms. Popup auto-closes after 3s. Both set `localStorage` permanently after subscribe to suppress future popup.
+- **Mobile nav rebuilt**: Full-screen overlay with Events + Member Portal pinned as prominent quick-access buttons at top; accordion sections for About/Programs/Community/Resources; Become a Member + Become a Sponsor CTA strip at bottom. Body scroll locked when open.
+- **Em dash reduction**: Replaced `—` with `.` or `·` across site-wide copy (monthly events, programs grid, membership, CTA, etc.)
+- **SponsorStrip expanded**: From 9 to 32 confirmed logo files. All sponsors with matching files in `/public/sponsors/` now shown. SponsorGrid also fixed 5 previously null-mapped entries.
+- **Forums removed**: Page replaced with 301 redirect → `/programs/monthly-events`. Removed from nav and footer.
+- **CPG Academy removed**: Page replaced with 301 redirect → `/resources/job-board`. Removed from nav and footer.
+- **Member Wins → Blog**: Renamed to "Blog" in nav and footer. Page rebuilt as "Member Wins & Stories" with win cards + founder story cards, colored top bands, badge chips. Placeholder notice at bottom.
+- **Sponsorship inquiry form**: Rebuilt to match Submit News dark card pattern — `#111` dark card left (logo lockup, "What You Get" checklist, Renee's email) + white form card right.
+- **Press removed from nav + footer**: `/about/press` page still exists but is no longer linked anywhere.
+- **Homepage mission block**: Changed to "San Diego's home for natural products founders, brands, and the people who support them."
+- **Hero headline mobile fix**: Removed `hidden sm:block` from `<br>` tags so line breaks show on all screen sizes.
+- **Monthly Events subtitle**: Changed from cringe "Social butterfly or wallflower..." to "Something worth showing up for, every single month."
+- **Naturally Rising subtitle**: Changed to "San Diego's biggest night in natural products."
+- **Member Wins subtitle**: Updated copy.
+- **GitHub**: All changes pushed to `GlassbeeGame/Naturally-San-Diego` (main branch).
+
+**Design decisions made:**
+- Press is removed — not enough active press to warrant a page in nav
+- Forums is removed — program not active, redirect keeps URL clean
+- CPG Academy is removed — no program description exists, redirect to Job Board
+- Member Wins is "Blog" in nav/footer only — page title stays "Member Wins & Stories"
+- Mobile nav: full-screen overlay is the canonical pattern (not inline dropdown)
+- Do NOT re-add Forums, CPG Academy, or Press to nav without explicit client direction
+
+**Patterns established:**
+- Mobile nav: full-screen overlay, Events + Member Portal pinned top, accordion body, CTA strip bottom
+- Newsletter success state: animated SVG checkmark draw, auto-close popup after 3s, permanent localStorage suppression
+
+**Issues or blockers:**
+- Vercel not yet connected to GitHub repo — needs to be done next
+- 3 Formspree endpoints still needed: Contact Us, Sponsor Inquiry, Submit News
+- Still outstanding from client: Slack invite link, sponsorship PDF, Naturally Rising application link, legal content
+
+**Next session should start with:**
+1. Connect Vercel to GitHub repo (GlassbeeGame/Naturally-San-Diego → auto-deploy on push)
+2. Client creates Formspree account — 3 endpoints: Contact Us, Sponsor Inquiry, Submit News
+3. Phase 4 client review pass — walk through live site
+
+---
 
 ### Session 2026-04-08 — UI Polish + SEO + New Components
 **What was built:**
