@@ -20,9 +20,10 @@
     overflow-x: hidden;
   }
   body {
-    /* clip instead of hidden — prevents horizontal overflow from adding scroll height
-       without creating a new formatting context (so position:sticky still works) */
-    overflow-x: clip;
+    /* Contain horizontal overflow so iOS Safari doesn't add phantom scroll height.
+       Both html+body set together propagates to the viewport, preserving position:sticky. */
+    overflow-x: hidden;
+    max-width: 100%;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;

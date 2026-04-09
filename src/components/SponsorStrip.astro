@@ -35,7 +35,7 @@ const sponsors = [
 ];
 ---
 
-<section class="bg-white py-10 border-b border-gray-100 relative overflow-hidden">
+<section class="bg-white py-10 border-b border-gray-100 relative">
   <!-- Edge fades for scroll hint -->
   <div class="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style="background: linear-gradient(to right, white, transparent);"></div>
   <div class="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style="background: linear-gradient(to left, white, transparent);"></div>
@@ -47,7 +47,7 @@ const sponsors = [
     >
       Our Sponsors
     </p>
-    <div class="flex items-center gap-10 overflow-x-auto pb-2 justify-start lg:justify-center" style="scrollbar-width: none; -ms-overflow-style: none;">
+    <div class="flex items-center gap-10 overflow-x-auto pb-2 justify-start lg:justify-center" style="scrollbar-width: none; -ms-overflow-style: none; max-width: 100%;">
       {sponsors.map(s => (
         <a
           href="/about/sponsors"
