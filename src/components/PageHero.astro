@@ -24,8 +24,8 @@ const eyebrowColor = isLight ? bgColor : '#C3DB66';
 ---
 
 <section
-  class="relative overflow-hidden"
-  style={`background-color: ${bgColor}; min-height: 420px;`}
+  class="relative overflow-hidden min-h-[220px] sm:min-h-[300px] lg:min-h-[420px]"
+  style={`background-color: ${bgColor};`}
 >
   <!-- Photo background -->
   {bgImage && (
@@ -53,7 +53,7 @@ const eyebrowColor = isLight ? bgColor : '#C3DB66';
   ></div>
 
   <!-- Content -->
-  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-14 lg:pt-16 flex flex-col justify-end" style="min-height: 420px;">
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-12 pt-6 sm:pb-16 sm:pt-10 lg:pb-20 lg:pt-14 flex flex-col justify-end min-h-[220px] sm:min-h-[300px] lg:min-h-[420px]">
     {eyebrow && (
       <div class="flex items-center gap-3 mb-5">
         <div class="h-0.5 w-6 rounded-full" style={`background-color: ${eyebrowColor};`}></div>
@@ -67,14 +67,14 @@ const eyebrowColor = isLight ? bgColor : '#C3DB66';
     )}
 
     <h1
-      style={`font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(2.25rem, 5vw, 3.75rem); line-height: 1.05; letter-spacing: -0.03em; color: ${textColor}; max-width: 720px;`}
+      style={`font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(1.75rem, 5vw, 3.75rem); line-height: 1.05; letter-spacing: -0.03em; color: ${textColor}; max-width: 720px;`}
     >
       {title}
     </h1>
 
     {subtitle && (
       <p
-        class="mt-4 max-w-xl leading-relaxed text-lg"
+        class="mt-3 max-w-xl leading-relaxed text-sm sm:text-base lg:text-lg"
         style={`font-family: 'Lato', sans-serif; color: ${subtitleColor};`}
       >
         {subtitle}

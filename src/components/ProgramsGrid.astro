@@ -64,8 +64,8 @@ const tiles = [
     <a
       href={tile.href}
       {...(tile.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      class={`relative overflow-hidden rounded-2xl flex flex-col justify-between hover-scale ${tile.span} ${tile.border ? 'border border-gray-200' : ''}`}
-      style={`background-color: ${tile.bg}; min-height: 220px; padding: 28px;`}
+      class={`relative overflow-hidden rounded-2xl flex flex-col justify-between hover-scale p-5 sm:p-6 lg:p-7 min-h-[140px] sm:min-h-[180px] lg:min-h-[220px] ${tile.span} ${tile.border ? 'border border-gray-200' : ''}`}
+      style={`background-color: ${tile.bg};`}
     >
 
       <div class="relative z-10">
@@ -84,7 +84,7 @@ const tiles = [
       </div>
 
       {/* Arrow in bottom-right */}
-      <div class="relative z-10 flex items-end justify-between mt-8">
+      <div class="relative z-10 flex items-end justify-between mt-3 lg:mt-8">
         <span
           class={`text-xs font-bold ${tile.text} opacity-60`}
           style="font-family: 'Poppins', sans-serif;"
