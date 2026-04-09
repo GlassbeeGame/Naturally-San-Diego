@@ -116,20 +116,83 @@ const inquiryFields = [
   </section>
 
   <!-- Inquiry Form -->
-  <section class="py-16 px-6 lg:px-10">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14">
-      <div>
-        <h2
-          class="text-2xl font-black text-[#111] mb-4"
-          style="font-family: 'Poppins', sans-serif;"
-        >
-          Let's talk.
-        </h2>
-        <p class="text-base text-[#111]/60 leading-relaxed mb-6" style="font-family: 'Lato', sans-serif;">
-          Fill out the form and Renee will be in touch within 1–2 business days. Or reach out directly at <a href="mailto:renee@naturallysandiego.org" class="text-[#00AD5A] hover:underline">renee@naturallysandiego.org</a>.
-        </p>
+  <section class="py-16 lg:py-20 px-6 lg:px-10">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+
+      <!-- ── Left: Context card ───────────────────────────── -->
+      <div class="bg-[#111] rounded-3xl p-8 lg:p-10 flex flex-col gap-8 relative overflow-hidden">
+
+        <div
+          class="absolute inset-0 opacity-[0.06]"
+          style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"
+          aria-hidden="true"
+        ></div>
+
+        <!-- Logo lockup -->
+        <div class="relative flex items-center gap-3">
+          <img src="/NN_Icon.png" alt="" aria-hidden="true" class="h-10 w-10 rounded-full" />
+          <span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1rem; color: #fff; line-height: 1.2;">
+            Naturally<br /><span style="color: rgba(255,255,255,0.55); font-weight: 600;">San Diego</span>
+          </span>
+        </div>
+
+        <div class="relative h-px bg-white/10"></div>
+
+        <div class="relative">
+          <p class="text-xs font-bold uppercase tracking-widest text-[#C3DB66] mb-3" style="font-family: 'Poppins', sans-serif;">
+            What You Get
+          </p>
+          <ul class="flex flex-col gap-2.5">
+            {[
+              'Logo and name at every NSD event',
+              'Placement in member emails and newsletters',
+              'Featured on the website sponsor page',
+              'Access to the full NSD community year-round',
+              'Recognition across social channels',
+            ].map(item => (
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-[#C3DB66] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-sm text-white/70 leading-snug" style="font-family: 'Lato', sans-serif;">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="relative h-px bg-white/10"></div>
+
+        <div class="relative">
+          <p class="text-xs font-bold uppercase tracking-widest text-[#C3DB66] mb-2" style="font-family: 'Poppins', sans-serif;">
+            Prefer to Talk Directly?
+          </p>
+          <p class="text-sm text-white/55 leading-relaxed mb-3" style="font-family: 'Lato', sans-serif;">
+            Reach Renee Solares, Executive Director, at:
+          </p>
+          <a
+            href="mailto:renee@naturallysandiego.org"
+            class="text-sm font-semibold text-white hover:text-[#C3DB66] transition-colors"
+            style="font-family: 'Lato', sans-serif;"
+          >
+            renee@naturallysandiego.org
+          </a>
+        </div>
+
       </div>
-      <div>
+
+      <!-- ── Right: Form card ─────────────────────────────── -->
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 lg:p-10">
+        <div class="mb-8">
+          <p class="text-xs font-bold uppercase tracking-widest text-[#00AD5A] mb-2" style="font-family: 'Poppins', sans-serif;">
+            Sponsorship Inquiry
+          </p>
+          <h2 class="text-2xl font-black text-[#111]" style="font-family: 'Poppins', sans-serif; letter-spacing: -0.02em;">
+            Let's find the right fit.
+          </h2>
+          <p class="text-sm text-[#111]/55 mt-2" style="font-family: 'Lato', sans-serif;">
+            Renee will be in touch within 1–2 business days.
+          </p>
+        </div>
         <!-- TODO: add Formspree endpoint — create account at formspree.io (Sponsor Inquiry → renee@naturallysandiego.org) -->
         <FormspreeForm
           action=""
@@ -137,6 +200,7 @@ const inquiryFields = [
           submitLabel="Send Inquiry"
         />
       </div>
+
     </div>
   </section>
 
